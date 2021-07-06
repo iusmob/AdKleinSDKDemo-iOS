@@ -36,6 +36,17 @@
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
+    if (self.splashAd) {
+        // 已存在开屏广告
+        return;
+    }
+    NSDate *now = [NSDate date];
+    NSDate *lastSplashTime = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastSplashTime"];
+    int interval = (int)ceil([now timeIntervalSinceDate:lastSplashTime]);
+    if (interval < 20) {
+        NSLog(@"距离上次开屏间隔小于20秒，不发起开屏");
+        return;
+    }
     [self loadSplashAd];
 }
 
@@ -110,9 +121,6 @@
 }
 
 - (void)loadSplashAd {
-    if (self.splashAd) {
-        return;
-    }
     self.splashAd = [[AdKleinSDKSplashAd alloc] initWithPlacementId:CONST_SPLASH_ID window:self.window];
     self.splashAd.delegate = self;
     [self.splashAd load];
@@ -127,7 +135,9 @@
     self.splashAd = nil;
 }
 - (void)ak_splashAdDidLoad:(AdKleinSDKSplashAd *)splashAd {
-
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    [userDefault setObject:[NSDate date] forKey:@"lastSplashTime"];
+    [userDefault synchronize];
 }
 - (void)ak_splashAdDidShow:(AdKleinSDKSplashAd *)splashAd {
 }

@@ -24,13 +24,13 @@
 - (void)createButtons {
 
     self.buttonArray = @[@{
-                             @"title":@"开屏广告(SplashAd)",
+                             @"title":@"开屏(SplashAd)",
                              @"vc":@"SplashAdVC",
     },@{
-                             @"title":@"插屏(Interstitial)",
+                             @"title":@"插屏(InterstitialAd)",
                              @"vc":@"InterstitialVC",
     },@{
-                             @"title":@"Banner(BannerView)",
+                             @"title":@"横幅(BannerAd)",
                              @"vc":@"BannerViewVC",
     },@{
                              @"title":@"信息流-模版(NativeExpressAd)",
@@ -39,10 +39,10 @@
                              @"title":@"信息流-自渲染(NativeAd)",
                              @"vc":@"NativeAdVC",
     },@{
-                             @"title":@"激励视频(RewardVideo)",
+                             @"title":@"激励视频(RewardVideoAd)",
                              @"vc":@"RewardVideoVC",
     },@{
-                             @"title":@"全屏视频(FullScreenVideo)",
+                             @"title":@"全屏视频(FullScreenVideoAd)",
                              @"vc":@"FullScreenVideoVC",
     }];
 

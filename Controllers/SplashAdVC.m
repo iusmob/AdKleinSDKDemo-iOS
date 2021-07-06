@@ -13,7 +13,7 @@
 
 @interface SplashAdVC ()<AdKleinSDKSplashAdDelegate>
 
-@property (nonatomic, strong)AdKleinSDKSplashAd *splashAd;
+@property (nonatomic, strong) AdKleinSDKSplashAd *splashAd;
 
 @property (nonatomic,strong) UIImageView * bottomView;
 
@@ -115,6 +115,9 @@
 - (void)ak_splashAdDidLoad:(AdKleinSDKSplashAd *)splashAd {
     NSString *func = [NSString stringWithFormat:@"%s",__func__];
     [self showString:func];
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    [userDefault setObject:[NSDate date] forKey:@"lastSplashTime"];
+    [userDefault synchronize];
 }
 - (void)ak_splashAdDidShow:(AdKleinSDKSplashAd *)splashAd {
     NSString *func = [NSString stringWithFormat:@"%s",__func__];

@@ -41,6 +41,11 @@
     [self showString:func];
 }
 
+- (void)ak_rewardVideoAdDidRewardEffective:(AdKleinSDKRewardVideoAd *)rewardVideoAd {
+    NSString *func = [NSString stringWithFormat:@"%s",__func__];
+    [self showString:func];
+}
+
 - (void)ak_rewardVideoAdDidComplete:(AdKleinSDKRewardVideoAd *)rewardVideoAd {
     NSString *func = [NSString stringWithFormat:@"%s",__func__];
     [self showString:func];
