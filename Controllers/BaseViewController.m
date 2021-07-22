@@ -24,8 +24,8 @@
     self.view.backgroundColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1];
     CGFloat screen_width = [UIScreen mainScreen].bounds.size.width;
 
-    self.tipsLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 100, screen_width - 100, 15)];
-    self.tipsLabel.numberOfLines = 0;
+    self.tipsLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 100, screen_width - 100, 80)];
+    self.tipsLabel.numberOfLines = 3;
     self.tipsLabel.font = [UIFont systemFontOfSize:15];
     self.tipsLabel.textAlignment = NSTextAlignmentCenter ;
     [self.view addSubview:self.tipsLabel];
@@ -67,7 +67,7 @@
 }
 
 - (void)showError:(NSError *)error {
-    NSString *message =[NSString stringWithFormat:@" error code= %ld  \n%@",error.code,error.userInfo[@"NSLocalizedDescription"]];
+    NSString *message =[NSString stringWithFormat:@" error code= %ld  \n%@",(long)error.code,error.userInfo[@"NSLocalizedDescription"]];
     [self showString:message];
 }
 
