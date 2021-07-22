@@ -29,9 +29,10 @@
 	self.window.rootViewController = [ViewController new];
 	[self.window makeKeyAndVisible];
 
+    [self createPlaceholder];
 	[self initSDK];
 	// 开屏会在初始化完成后执行
-    [self loadSplashAd: YES];
+    [self loadSplashAd];
 	return YES;
 }
 
@@ -47,7 +48,7 @@
 		NSLog(@"距离上次开屏间隔小于20秒，不发起开屏");
 		return;
 	}
-    [self loadSplashAd: NO];
+    [self loadSplashAd];
 }
 
 - (void)initSDK {
@@ -120,11 +121,7 @@
 	 }];
 }
 
-- (void)loadSplashAd: (BOOL)fromLaunch {
-    if (fromLaunch) {
-        [self createPlaceholder];
-    }
-       
+- (void)loadSplashAd {
 	self.splashAd = [[AdKleinSDKSplashAd alloc] initWithPlacementId:CONST_SPLASH_ID window:self.window];
 	self.splashAd.delegate = self;
 	[self.splashAd load];
