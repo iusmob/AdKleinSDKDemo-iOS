@@ -558,7 +558,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.iusmob.adklein.demo.oc;
 				PRODUCT_NAME = AdKleinSDKDemo;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64 arm64e  armv7s x86_64 i386";
 			};
 			name = Debug;
 		};
@@ -593,7 +592,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.iusmob.adklein.demo.oc;
 				PRODUCT_NAME = AdKleinSDKDemo;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64 arm64e  armv7s x86_64 i386";
 			};
 			name = Release;
 		};
