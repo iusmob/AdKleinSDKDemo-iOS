@@ -10,14 +10,14 @@
 #define ConstantHeader_h
 
 
-#define CONST_MEDIA_ID @"1385996"
-#define CONST_SPLASH_ID @"101112867839" //开屏
-#define CONST_FEED_NATIVE_ID @"144244099425" //自渲染信息流   原生信息流
-#define CONST_FEED_EXPRESS_ID @"102081776052"//信息流广告ios 模板信息流
-#define CONST_BANNER_ID @"134437845508" //横幅广告ios
-#define CONST_INTERSTITIAL_ID @"121062546321" //插屏广告ios
-#define CONST_FULLSCREEN_ID @"181704152578"//全屏视频广告ios
-#define CONST_REWARD_VIDEO_ID @"147647844008"//激励视频广告ios
+#define CONST_MEDIA_ID @"194254620"
+#define CONST_SPLASH_ID @"141846962557" //开屏
+#define CONST_FEED_NATIVE_ID @"188365472702" //自渲染信息流   原生信息流
+#define CONST_FEED_EXPRESS_ID @"104839529683"//信息流广告ios 模板信息流
+#define CONST_BANNER_ID @"106467382054" //横幅广告ios
+#define CONST_INTERSTITIAL_ID @"123993067264" //插屏广告ios
+#define CONST_FULLSCREEN_ID @"159261486405"//全屏视频广告ios
+#define CONST_REWARD_VIDEO_ID @"123505912353"//激励视频广告ios
 
 
 
