@@ -1,16 +1,14 @@
-# 莫比乌斯SDK iOS SDK——接入文档
+# AdKleinSDK iOS SDK——接入文档
 
-## 1. 概述
+## 概述
 
-### 1.1 概述
+尊敬的开发者朋友，欢迎您使用AdKlein广告聚合SDK。通过本文档，您可以快速完成多平台广告SDK的集成。
 
-尊敬的开发者朋友，欢迎您使用莫比乌斯SDK。通过本文档，您可以快速完成多平台广告SDK的集成。
+### AdKlein广告聚合SDK组成结构
 
-### 1.2 莫比乌斯SDK组成结构
+AdKlein广告聚合SDK主要由**AdKlein核心SDK**（简称AdKleinSDK）和**一个或多个**三方广告平台SDK构成。
 
-聚合SDK主要由**莫比乌斯核心SDK**（简称莫比乌斯SDK）和**一个或多个**三方广告平台SDK构成。
-
-### 1.3 三方广告平台名称概述
+### 三方广告平台名称概述
 
 | Name      | 平台名称   | 平台别称 |
 | --------- | -------- | -------- |
@@ -22,7 +20,7 @@
 | smaato | Smaato | 誉广 |
 
 
-## 2. 支持的广告类型
+## 支持的广告类型
 
 <table>
   <tr>
@@ -62,13 +60,13 @@
   </tr>
 </table>
 
-## 3. Demo下载链接
+## Demo下载链接
 
-在管理后台的接入中心下载。
+[Github](https://github.com/iusmob/AdKleinSDKDemo-iOS)
 
-## 4. SDK接入流程
+## SDK接入流程
 
-### 4.1 pod 接入 [强烈推荐]
+### pod 接入 [强烈推荐]
 
 推荐使用pod命令：
 
@@ -85,7 +83,7 @@ pod 'AdKleinSDK/AdKleinSDKPlatforms/Mobius'     # 莫比乌斯(推荐)
 
 **注意：** 接入Google的Admob广告请务必参考5.1.1在Info.plist中添加`GADApplicationIdentifier`信息。
 
-### 4.2 手动导入
+### 手动导入
 
 从接入中心下载 SDK，并将各SDK拖入工程 。
 
@@ -115,7 +113,7 @@ ImageIO.framework
 libbz2.tbd
 ```
 
-### 4.3 工程环境配置
+### 工程环境配置
 
 1. 在Info.plist 添加支持 Http 访问字段
 
@@ -251,15 +249,15 @@ libbz2.tbd
 
 
 
-### 4.4 iOS14适配
+### iOS14适配
 
 由于iOS14中对于权限和隐私内容有一定程度的修改，而且和广告业务关系较大，请按照如下步骤适配，如果未适配。不会导致运行异常或者崩溃等情况，但是会一定程度上影响广告收入。详情请访问[https://developer.apple.com/documentation/apptrackingtransparency](https://developer.apple.com/documentation/apptrackingtransparency)。
 
 1. 应用编译环境升级至 Xcode 12.0 及以上版本；
-2. 升级莫比乌斯iOS SDK到 2.5.0及以上版本；
+2. 升级AdKleinSDK-iOS SDK到 2.5.0及以上版本；
 3. 设置SKAdNetwork和IDFA权限；
 
-#### 4.4.1 SKAdNetwork
+#### SKAdNetwork
 
 SKAdNetwork 是接收iOS端营销推广活动归因数据的一种方法。
 
@@ -296,7 +294,7 @@ SKAdNetwork 是接收iOS端营销推广活动归因数据的一种方法。
 </array>
 ```
 
-#### 4.4.2 IDFA
+#### IDFA
 
 从 iOS 14 开始，在应用程序调用 App Tracking Transparency 向用户提跟踪授权请求之前，IDFA 将不可用。
 
@@ -326,22 +324,22 @@ SKAdNetwork 是接收iOS端营销推广活动归因数据的一种方法。
 ```
 
 
-## 5. 示例代码
+## 示例代码
 
-### 5.1 SDK初始化
+### SDK初始化
 
 在 AppDelegate.m 中进行SDK的初始化
 
 ```objectivec
 #import <AdKleinSDK/AdKleinSDK.h>
 
-// 初始化莫比乌斯SDK
+// 初始化AdKleinSDK
 [AdKleinSDKConfig initMediaId:CONST_MEDIA_ID];
 ```
 
 **PS ：mediaId通过后台配置生成，初始化必须在主线程中进行，SDK暂不支持多进程。**
 
-#### 5.1.1 Admob的单独处理
+#### Admob的单独处理
 
 接入Admob时，无法使用mediaId进行初始化来获取admob所需的`GADApplicationIdentifier`。
 
@@ -354,21 +352,21 @@ SKAdNetwork 是接收iOS端营销推广活动归因数据的一种方法。
 <string>ca-app-pub-3940256099942544~1458002511</string>
 ```
 
-同时请确认在步骤`4.4.1 SKAdNetwork`中配置了谷歌的SKAdNetworkID。
+同时请确认在步骤[`SKAdNetwork`](#skadnetwork)中配置了谷歌的SKAdNetworkID。
 
 
 
-#### 5.1.2 调试模式
+#### 调试模式
 
 开启调试模式可以获得更详细的日志输出，用于定位问题。
 
 ```objectivec
 [AdKleinSDKConfig debugMode];
-// 初始化莫比乌斯SDK
+// 初始化AdKleinSDK
 [AdKleinSDKConfig initMediaId:CONST_MEDIA_ID];
 ```
 
-#### 5.1.3 获取版本号
+#### 获取版本号
 
 ```objectivec
 //SDK版本号，如：3.0.0
@@ -379,7 +377,7 @@ NSString *sdkVersionCode = [AdKleinSDKConfig sdkVersionCode];
 
 
 
-### <a name="ad_splash">5.2 开屏广告示例</a>
+### <a name="ad_splash">开屏广告示例</a>
 
 开屏广告建议在闪屏页进行展示，开屏广告的宽度和高度取决于容器的宽高，都是会撑满广告容器；**开屏广告的高度必须大于等于屏幕高度（手机屏幕完整高度，包括状态栏之类）的75%**，否则可能会影响收益计费（广点通的开屏甚至会影响跳过按钮的回调）。
 
@@ -449,7 +447,7 @@ self.splashAd.delegate = self;
 
 
 
-### <a name="ad_banner">5.3 横幅广告示例</a>
+### <a name="ad_banner">横幅广告示例</a>
 
 Banner横幅广告建议放置在 **固定位置**，而非TableView等控件中充当Cell，Banner广告支持多种尺寸比例，可在后台创建广告位时配置，Banner广告的宽度将会撑满容器，高度自适应，建议Banner广告容器高度也为自适应。
 
@@ -495,18 +493,18 @@ Banner横幅广告建议放置在 **固定位置**，而非TableView等控件中
   self.bannerAd = [[AdKleinSDKBannerAd alloc] initWithPlacementId:CONST_BANNER_ID viewController:self];
   self.bannerAd.delegate = self;
   self.bannerAd.bannerFrame =CGRectMake(0, 400, 375, 60);
-  self.bannerAd.superView = self.view;
+  self.bannerAd.adContainer = self.view;
   self.bannerAd.animated = YES;
   [self.bannerAd load];
 ```
 
 
 
-### <a name="ad_native">5.4 信息流广告示例</a>
+### <a name="ad_native">信息流广告示例</a>
 
 信息流广告，具备自渲染和模板两种广告样式：自渲染是SDK将返回广告标题、描述、Icon、图片、多媒体视图等信息，开发者可通过自行拼装渲染成喜欢的样式；模板样式则是返回拼装好的广告视图，开发者只需将视图添加到相应容器即可，模板样式的容器高度建议是自适应。
 
-#### 5.4.1 自渲染
+#### 自渲染
 
 1. 引入相关模块：
 
@@ -647,7 +645,7 @@ if(!self.adLoader) {
 
 
 
-#### 5.4.2 模版渲染
+#### 模版渲染
 
 1. 引入相关模块：
 
@@ -734,7 +732,7 @@ if (!self.adLoader) {
 [self.adLoader load];
 ```
 
-### <a name="ad_reward_video">5.5 激励视频广告示例</a>
+### <a name="ad_reward_video">激励视频广告示例</a>
 
 将短视频融入到APP场景当中，用户观看短视频广告后可以给予一些应用内奖励。
 
@@ -805,7 +803,7 @@ self.adLoader.delegate = self;
 
 
 
-### <a name="ad_fullscreen_video">5.6 全屏视频广告示例</a>
+### <a name="ad_fullscreen_video">全屏视频广告示例</a>
 
 全屏视频广告是类似激励视频样式的广告形式，与激励视频不同之处在于全屏视频广告播放一定时间时间后即可跳过，同时全屏视频广告拥有跳过回调不具备奖励回调。
 
@@ -867,7 +865,7 @@ self.adLoader.maxVideoDuration = 100*1000;
 
 
 
-### <a name="ad_interstitial">5.7 插屏广告示例</a>
+### <a name="ad_interstitial">插屏广告示例</a>
 
 插屏广告是移动广告的一种常见形式，在应用流程中弹出，当应用展示插屏广告时，用户可以选择点击广告，也可以将其关闭并返回应用。
 
@@ -927,43 +925,43 @@ self.adLoader.adSize = CGSizeMake(300, 400);
 
 
 
-## 6. iOS集成常见问题
+## iOS集成常见问题
 
-### 6.1 通用问题
+### 通用问题
 
-#### 1：为什么返回的广告中有重复广告？
+#### 为什么返回的广告中有重复广告？
 
 A：同一个广告主在广告后台会使用相似的素材内容创建多个广告计划，因此平台在返回的广告中可能会有很多相似内容的广告，但是这些广告对应的广告计划ID是不相同的。
 
-### 6.2 开屏广告常见问题
+### 开屏广告常见问题
 
-#### 1.开屏广告的容器需要注意什么？
+#### 开屏广告的容器需要注意什么？
 
 A：**开屏广告的高度必须大于等于屏幕高度（手机屏幕完整高度，包括状态栏）的75%**，否则可能会影响收益计费（广点通的开屏甚至会影响跳过按钮的回调）。
 
-### 6.3 横幅广告常见问题
+### 横幅广告常见问题
 
-#### 1.Banner横幅广告的尺寸问题？
+#### Banner横幅广告的尺寸问题？
 
 A：Banner广告支持多种尺寸比例，可在后台创建广告位时配置，Banner广告的宽度将会撑满容器，高度自适应，建议Banner广告容器高度也为自适应。
 
-#### 2.Banner横幅广告的建议位置
+#### Banner横幅广告的建议位置
 
 A：Banner横幅广告建议放置在 **固定位置**，而非TableView等控件中充当Cell。
 
-### 6.4 信息流广告常见问题
+### 信息流广告常见问题
 
-#### 1.信息流广告中自渲染和模板的区别
+#### 信息流广告中自渲染和模板的区别
 
 A：信息流广告，具备自渲染和模板两种广告样式：自渲染是SDK将返回广告标题、描述、Icon、图片、多媒体视图等信息，开发者可通过自行拼装渲染成喜欢的样式；模板样式则是返回拼装好的广告视图，开发者只需将视图添加到相应容器即可，模板样式的容器高度建议是自适应
 
-### 6.5 激励视频、全屏视频、插屏广告常见问题
+### 激励视频、全屏视频、插屏广告常见问题
 
 A:**激励视频广告**是播放一段视频，播放完成或其他特定情况下（不同平台有所差异）会给予激励回调，激励视频一般是需要播放完成后才能退出播放界面；**全屏视频广告**类似激励视频，但是全屏视频没有激励回调，全屏视频一般在播放一段时间后即可退出当前播放界面；**插屏广告**一般是以弹窗的形式展示图文或视频，也有部分平台是单独的全屏界面进行展示；
 
 
 
-## 7. iOS SDK错误码
+## iOS SDK错误码
 
 
 
@@ -986,4 +984,5 @@ A:**激励视频广告**是播放一段视频，播放完成或其他特定情�
 
 | 版本号  |    日期    | 更新日志                                                     |
 | ------- | :--------: | ------------------------------------------------------------ |
+| v3.1.0 | 2021-07-30 | 更新AdMobiusSDK； |
 | V3.0.1 | 2021-06-25 | 3.0全新发布，产品更名为AdKleinSDK，支持Cocoapods在线安装，2.x版本用户请注意接入代码更新； |
