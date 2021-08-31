@@ -7,10 +7,10 @@
 //
 
 #import "BannerViewVC.h"
-#import <AdKleinSDK/AdKleinSDKBannerAd.h>
+#import <AdKleinSDK/AdKleinSDKBannerAdView.h>
 
-@interface BannerViewVC () <AdKleinSDKBannerAdDelegate>
-@property (nonatomic, strong) AdKleinSDKBannerAd *adView;
+@interface BannerViewVC () <AdKleinSDKBannerAdViewDelegate>
+@property (nonatomic, strong) AdKleinSDKBannerAdView *adView;
 
 @property (strong, nonatomic) UIButton *removeBtn;
 
@@ -35,46 +35,46 @@
 
 - (void)loadClick {
     if (self.adView) {
+        [self.adView removeFromSuperview];
         self.adView.delegate = nil;
         self.adView = nil;
     }
-    self.adView = [[AdKleinSDKBannerAd alloc] initWithPlacementId:CONST_BANNER_ID viewController:self];
+    self.adView = [[AdKleinSDKBannerAdView alloc] initWithPlacementId:CONST_BANNER_ID viewController:self];
     self.adView.delegate = self;
     CGFloat screen_width = [UIScreen mainScreen].bounds.size.width;
-    self.adView.bannerFrame = CGRectMake(0, 400, screen_width, screen_width / 2);
-    self.adView.adContainer = self.view;
+    self.adView.frame = CGRectMake(0, 400, screen_width, screen_width / 2);
     self.adView.animated = YES;
-    //self.adView.autoSwitchInterval = 10;
+    //self.adView.autoSwitchInterval = 60;
 
+    [self.view addSubview:self.adView];
     [self.adView load];
 
 }
 
 - (void)removeClick {
     if (self.adView) {
-        [self.adView removeAd];
-        self.adView.delegate = nil;
+        [self.adView removeFromSuperview];
         self.adView = nil;
     }
 }
 
 #pragma mark 协议方法
-- (void)ak_bannerAdDidClose:(AdKleinSDKBannerAd *)bannerAd {
+- (void)ak_bannerAdDidClose:(AdKleinSDKBannerAdView *)bannerAd {
     NSString *func = [NSString stringWithFormat:@"%s",__func__];
     [self showString:func];
 }
-- (void)ak_bannerAdDidFail:(AdKleinSDKBannerAd *)bannerAd withError:(NSError *)error {
+- (void)ak_bannerAdDidFail:(AdKleinSDKBannerAdView *)bannerAd withError:(NSError *)error {
     [self showError:error];
 }
-- (void)ak_bannerAdDidLoad:(AdKleinSDKBannerAd *)bannerAd {
+- (void)ak_bannerAdDidLoad:(AdKleinSDKBannerAdView *)bannerAd {
     NSString *func = [NSString stringWithFormat:@"%s",__func__];
     [self showString:func];
 }
-- (void)ak_bannerAdDidShow:(AdKleinSDKBannerAd *)bannerAd {
+- (void)ak_bannerAdDidShow:(AdKleinSDKBannerAdView *)bannerAd {
     NSString *func = [NSString stringWithFormat:@"%s",__func__];
     [self showString:func];
 }
-- (void)ak_bannerAdDidClick:(AdKleinSDKBannerAd *)bannerAd {
+- (void)ak_bannerAdDidClick:(AdKleinSDKBannerAdView *)bannerAd {
     NSString *func = [NSString stringWithFormat:@"%s",__func__];
     [self showString:func];
 }
