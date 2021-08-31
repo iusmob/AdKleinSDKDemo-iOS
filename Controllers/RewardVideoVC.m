@@ -60,6 +60,10 @@
     [self showError:error];
 }
 
+- (void)ak_rewardVideoAdDidRenderFail:(AdKleinSDKRewardVideoAd *)rewardVideoAd withError:(NSError *)error {
+    [self showError:error];
+}
+
 - (void)ak_rewardVideoAdDidLoad:(AdKleinSDKRewardVideoAd *)rewardVideoAd {
     NSString *func = [NSString stringWithFormat:@"%s",__func__];
     [self showString:func];

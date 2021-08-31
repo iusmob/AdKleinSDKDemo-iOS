@@ -29,10 +29,8 @@
 	self.window.rootViewController = [ViewController new];
 	[self.window makeKeyAndVisible];
 
-    [self createPlaceholder];
+	[self createPlaceholder];
 	[self initSDK];
-	// 开屏会在初始化完成后执行
-    [self loadSplashAd];
 	return YES;
 }
 
@@ -48,7 +46,7 @@
 		NSLog(@"距离上次开屏间隔小于20秒，不发起开屏");
 		return;
 	}
-    [self loadSplashAd];
+	[self loadSplashAd];
 }
 
 - (void)initSDK {
@@ -91,12 +89,13 @@
 			 NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
 			 [userDefault setObject:@"YES" forKey:@"inited"];
 			 [userDefault synchronize];
-			 // IOS14新增，需要先申请IDFA，否则会影响收益
 			 if (@available(iOS 14.0, *)) {
 				 [ATTrackingManager requestTrackingAuthorizationWithCompletionHandler:^(ATTrackingManagerAuthorizationStatus status) {
+				          dispatch_async(dispatch_get_main_queue(), ^{
+								 [self initAdKleinSDK];
+							 });
 				  }];
 			 }
-			 [self initAdKleinSDK];
 		 } else {
 //            UIWindow *window = [UIApplication sharedApplication].keyWindow;
 			 [UIView animateWithDuration:0.5f animations:^{
@@ -119,6 +118,7 @@
 			 NSLog(@"SDK 初始化成功");
 		 }
 	 }];
+	[self loadSplashAd];
 }
 
 - (void)loadSplashAd {
@@ -128,17 +128,17 @@
 }
 
 - (void)createPlaceholder {
-    NSString *lsname = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"UILaunchStoryboardName"];
-    UIViewController *vc = [[UIStoryboard storyboardWithName:lsname bundle:nil] instantiateInitialViewController];
-    vc.view.frame = self.window.bounds;
-    [self.window addSubview:vc.view];
-    self.placeholderView = vc.view;
+	NSString *lsname = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"UILaunchStoryboardName"];
+	UIViewController *vc = [[UIStoryboard storyboardWithName:lsname bundle:nil] instantiateInitialViewController];
+	vc.view.frame = self.window.bounds;
+	[self.window addSubview:vc.view];
+	self.placeholderView = vc.view;
 }
 
 - (void)removePlaceholder {
-    if (self.placeholderView){
-        [self.placeholderView removeFromSuperview];
-    }
+	if (self.placeholderView) {
+		[self.placeholderView removeFromSuperview];
+	}
 }
 
 #pragma mark - AdKleinSDKSplashAdDelegate
@@ -148,7 +148,7 @@
 }
 - (void)ak_splashAdDidFail:(AdKleinSDKSplashAd *)splashAd withError:(NSError *)error {
 	self.splashAd = nil;
-    [self removePlaceholder];
+	[self removePlaceholder];
 }
 - (void)ak_splashAdDidLoad:(AdKleinSDKSplashAd *)splashAd {
 	NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
@@ -156,7 +156,7 @@
 	[userDefault synchronize];
 }
 - (void)ak_splashAdDidShow:(AdKleinSDKSplashAd *)splashAd {
-    [self removePlaceholder];
+	[self removePlaceholder];
 }
 - (void)ak_splashAdDidClick:(AdKleinSDKSplashAd *)splashAd {
 
