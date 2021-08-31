@@ -134,116 +134,116 @@ libbz2.tbd
 ```xml
 <key>LSApplicationQueriesSchemes</key>
 <array>
-  <!-- 电商 -->
-  <string>taobao</string><!-- 淘宝  -->
-  <string>tmall</string><!-- 天猫  -->
-  <string>jdlogin</string><!-- 京东  -->
-  <string>pinduoduo</string> <!-- 拼多多  -->
-  <string>kaola</string> <!-- 网易考拉  -->
-  <string>yanxuan</string> <!-- 网易严选  -->
-  <string>vipshop</string> <!-- 唯品会  -->
-  <string>suning</string> <!-- 苏宁  -->
-  <string>mishopv1</string> <!-- 小米商城 -->
-  <string>wireless1688</string> <!-- 阿里巴巴 -->
+<!-- 电商 -->
+<string>taobao</string><!-- 淘宝  -->
+<string>tmall</string><!-- 天猫  -->
+<string>jdlogin</string><!-- 京东  -->
+<string>pinduoduo</string> <!-- 拼多多  -->
+<string>kaola</string> <!-- 网易考拉  -->
+<string>yanxuan</string> <!-- 网易严选  -->
+<string>vipshop</string> <!-- 唯品会  -->
+<string>suning</string> <!-- 苏宁  -->
+<string>mishopv1</string> <!-- 小米商城 -->
+<string>wireless1688</string> <!-- 阿里巴巴 -->
 
-  <!-- 社交、社区-->
-  <string>weibo</string><!-- 微博 -->
-  <string>zhihu</string><!-- 知乎 -->
-  <string>xhsdiscover</string><!-- 小红书 -->
-  <string>momochat</string><!-- 陌陌 -->
-  <string>blued</string><!-- blued -->
-  <string>mqzone</string><!-- QQ空间 -->
-  <string>mqq</string><!-- QQ -->
-  <string>tantanapp</string><!-- 探探 -->
-  <string>huputiyu</string><!-- 虎扑 -->
-  <string>com.baidu.tieba</string> <!-- 贴吧  -->
-  <string>tianya</string> <!-- 天涯社区  -->
-  <string>douban</string> <!-- 豆瓣 -->
-  <string>jike</string> <!-- 即刻 -->
+<!-- 社交、社区-->
+<string>weibo</string><!-- 微博 -->
+<string>zhihu</string><!-- 知乎 -->
+<string>xhsdiscover</string><!-- 小红书 -->
+<string>momochat</string><!-- 陌陌 -->
+<string>blued</string><!-- blued -->
+<string>mqzone</string><!-- QQ空间 -->
+<string>mqq</string><!-- QQ -->
+<string>tantanapp</string><!-- 探探 -->
+<string>huputiyu</string><!-- 虎扑 -->
+<string>com.baidu.tieba</string> <!-- 贴吧  -->
+<string>tianya</string> <!-- 天涯社区  -->
+<string>douban</string> <!-- 豆瓣 -->
+<string>jike</string> <!-- 即刻 -->
 
-  <!-- 短视频 -->
-  <string>snssdk1128</string> <!-- 抖音 -->
-  <string>snssdk1112</string> <!-- 火山 -->
-  <string>snssdk32</string> <!-- 西瓜视频 -->
-  <string>gifshow</string> <!-- 快手 -->
+<!-- 短视频 -->
+<string>snssdk1128</string> <!-- 抖音 -->
+<string>snssdk1112</string> <!-- 火山 -->
+<string>snssdk32</string> <!-- 西瓜视频 -->
+<string>gifshow</string> <!-- 快手 -->
 
-  <!-- 视频/直播 -->
-  <string>tenvideo</string> <!-- 腾讯视频  -->
-  <string>youku</string> <!-- 优酷  -->
-  <string>bilibili</string> <!-- B站  -->
-  <string>imgotv</string> <!-- 芒果TV  -->
-  <string>qiyi-iphone</string> <!-- 爱奇艺  -->
-  <string>hanju</string> <!-- 韩剧TV  -->
-  <string>douyutv</string> <!-- 斗鱼  -->
-  <string>yykiwi</string> <!-- 虎牙  -->
+<!-- 视频/直播 -->
+<string>tenvideo</string> <!-- 腾讯视频  -->
+<string>youku</string> <!-- 优酷  -->
+<string>bilibili</string> <!-- B站  -->
+<string>imgotv</string> <!-- 芒果TV  -->
+<string>qiyi-iphone</string> <!-- 爱奇艺  -->
+<string>hanju</string> <!-- 韩剧TV  -->
+<string>douyutv</string> <!-- 斗鱼  -->
+<string>yykiwi</string> <!-- 虎牙  -->
 
-  <!-- 图片处理  -->
-  <string>mtxx.open</string> <!-- 美图秀秀  -->
-  <string>faceu</string> <!-- faceu国内  -->
-  <string>ulike</string> <!-- 轻颜国内 -->
+<!-- 图片处理  -->
+<string>mtxx.open</string> <!-- 美图秀秀  -->
+<string>faceu</string> <!-- faceu国内  -->
+<string>ulike</string> <!-- 轻颜国内 -->
 
-  <!-- 资讯 -->
-  <string>snssdk141</string> <!-- 今日头条  -->
-  <string>newsapp</string> <!-- 网易新闻  -->
-  <string>qqnews</string> <!-- 腾讯新闻  -->
-  <string>iting</string> <!-- 喜马拉雅 -->
-  <string>weread</string> <!-- 微信读书 -->
-  <string>jianshu</string> <!-- 简书 -->
-  <string>igetApp</string> <!-- 得到 -->
-  <string>kuaikan</string> <!-- 快看漫画 -->
+<!-- 资讯 -->
+<string>snssdk141</string> <!-- 今日头条  -->
+<string>newsapp</string> <!-- 网易新闻  -->
+<string>qqnews</string> <!-- 腾讯新闻  -->
+<string>iting</string> <!-- 喜马拉雅 -->
+<string>weread</string> <!-- 微信读书 -->
+<string>jianshu</string> <!-- 简书 -->
+<string>igetApp</string> <!-- 得到 -->
+<string>kuaikan</string> <!-- 快看漫画 -->
 
-  <!-- 财经 -->
-  <string>sinanews</string> <!-- 新浪财经  -->
-  <string>amihexin</string> <!-- 同花顺炒股 -->
+<!-- 财经 -->
+<string>sinanews</string> <!-- 新浪财经  -->
+<string>amihexin</string> <!-- 同花顺炒股 -->
 
-  <!-- 音乐 -->
-  <string>orpheus</string> <!-- 网易云音乐  -->
-  <string>qqmusic</string> <!-- qq音乐  -->
-  <string>kugouURL</string> <!-- 酷狗  -->
-  <string>qmkege</string> <!-- 全民K歌 -->
-  <string>changba</string> <!-- 唱吧  -->
+<!-- 音乐 -->
+<string>orpheus</string> <!-- 网易云音乐  -->
+<string>qqmusic</string> <!-- qq音乐  -->
+<string>kugouURL</string> <!-- 酷狗  -->
+<string>qmkege</string> <!-- 全民K歌 -->
+<string>changba</string> <!-- 唱吧  -->
 
-  <!-- 工具 -->
-  <string>iosamap</string> <!-- 高德地图  -->
-  <string>baidumap</string> <!-- 百度地图   -->
-  <string>baiduyun</string> <!-- 百度网盘  -->
-  <string>rm434209233MojiWeather</string> <!-- 墨迹天气  -->
+<!-- 工具 -->
+<string>iosamap</string> <!-- 高德地图  -->
+<string>baidumap</string> <!-- 百度地图   -->
+<string>baiduyun</string> <!-- 百度网盘  -->
+<string>rm434209233MojiWeather</string> <!-- 墨迹天气  -->
 
-  <!-- 办公 -->
-  <string>wxwork</string> <!-- 企业微信  -->
-  <string>dingtalk</string> <!-- 钉钉 -->
-
-
-  <!-- 生活 -->
-  <string>imeituan</string> <!-- 美团  -->
-  <string>dianping</string> <!-- 点评  -->
-  <string>cainiao</string> <!-- 菜鸟裹裹  -->
-  <string>wbmain</string> <!--  58同城 -->
-  <string>mihome</string> <!--  米家 -->
-
-  <!-- 美食佳饮  -->
-  <string>xcfapp</string> <!-- 下厨房  -->
-  <string>sbuxcn</string> <!-- 星巴克中国  -->
-  <string>meituanwaimai</string> <!-- 美团外卖  -->
-
-  <!-- 运动健康  -->
-  <string>fb370547106731052</string> <!-- 小米运动  -->
-  <string>meetyou.linggan</string> <!-- 美柚  -->
-  <string>babytree</string> <!-- 宝宝树  -->
-  <string>keep</string> <!-- keep  -->
-
-  <!-- 旅行  -->
-  <string>CtripWireless</string> <!-- 携程  -->
-  <string>diditaxi</string> <!-- 滴滴  -->
-  <string>taobaotravel</string> <!-- 飞猪  -->
-  <string>travelguide</string> <!-- 马蜂窝  -->
+<!-- 办公 -->
+<string>wxwork</string> <!-- 企业微信  -->
+<string>dingtalk</string> <!-- 钉钉 -->
 
 
+<!-- 生活 -->
+<string>imeituan</string> <!-- 美团  -->
+<string>dianping</string> <!-- 点评  -->
+<string>cainiao</string> <!-- 菜鸟裹裹  -->
+<string>wbmain</string> <!--  58同城 -->
+<string>mihome</string> <!--  米家 -->
 
-  <!-- 游戏 -->
-  <string>tencent1104466820</string> <!-- 王者荣耀  -->
-  <string>tencent100689805</string> <!-- 天天爱消除  -->
-  <string>tencent382</string> <!-- QQ斗地主  -->
+<!-- 美食佳饮  -->
+<string>xcfapp</string> <!-- 下厨房  -->
+<string>sbuxcn</string> <!-- 星巴克中国  -->
+<string>meituanwaimai</string> <!-- 美团外卖  -->
+
+<!-- 运动健康  -->
+<string>fb370547106731052</string> <!-- 小米运动  -->
+<string>meetyou.linggan</string> <!-- 美柚  -->
+<string>babytree</string> <!-- 宝宝树  -->
+<string>keep</string> <!-- keep  -->
+
+<!-- 旅行  -->
+<string>CtripWireless</string> <!-- 携程  -->
+<string>diditaxi</string> <!-- 滴滴  -->
+<string>taobaotravel</string> <!-- 飞猪  -->
+<string>travelguide</string> <!-- 马蜂窝  -->
+
+
+
+<!-- 游戏 -->
+<string>tencent1104466820</string> <!-- 王者荣耀  -->
+<string>tencent100689805</string> <!-- 天天爱消除  -->
+<string>tencent382</string> <!-- QQ斗地主  -->
 </array>
 ```
 
@@ -268,29 +268,29 @@ SKAdNetwork 是接收iOS端营销推广活动归因数据的一种方法。
 ```xml
 <key>SKAdNetworkItems</key>
 <array>
-  // 穿山甲
-  <dict>
+// 穿山甲
+<dict>
     <key>SKAdNetworkIdentifier</key>
     <string>238da6jt44.skadnetwork</string>
-  </dict>
-  <dict>
+</dict>
+<dict>
     <key>SKAdNetworkIdentifier</key>
     <string>x2jnk7ly8j.skadnetwork</string>
-  </dict>
-  <dict>
+</dict>
+<dict>
     <key>SKAdNetworkIdentifier</key>
     <string>22mmun2rn5.skadnetwork</string>
-  </dict>
-  // 优量汇（广点通）
-  <dict>
+</dict>
+// 优量汇（广点通）
+<dict>
     <key>SKAdNetworkIdentifier</key>
     <string>f7s53z58qe.skadnetwork</string>
-  </dict>
-  // Admob（谷歌广告）
-  <dict>
+</dict>
+// Admob（谷歌广告）
+<dict>
     <key>SKAdNetworkIdentifier</key>
     <string>cstr6suwn9.skadnetwork</string>
-  </dict>
+</dict>
 </array>
 ```
 
@@ -449,39 +449,47 @@ self.splashAd.delegate = self;
 
 ### <a name="ad_banner">横幅广告示例</a>
 
-Banner横幅广告建议放置在 **固定位置**，而非TableView等控件中充当Cell，Banner广告支持多种尺寸比例，可在后台创建广告位时配置，Banner广告的宽度将会撑满容器，高度自适应，建议Banner广告容器高度也为自适应。
+Banner横幅广告建议放置在 **固定位置**，而非TableView等控件中充当Cell，Banner广告支持多种尺寸比例，可在后台创建广告位时配置。
+
+**注意** 接入方式在3.2.0后有所变化，现在横幅广告加载器即广告视图，可以直接设置frame并添加到页面中。AdKleinSDK版本从<3.2.0升级时，需要进行以下改动：
+
+- 将`AdKleinSDKBannerAd`改名为`AdKleinSDKBannerAdView`，将`AdKleinSDKBannerAdDelegate`改名为`AdKleinSDKBannerAdViewDelegate`
+- 将`self.bannerAd.bannerFrame`改为`self.bannerAd.frame`
+- 将`self.bannerAd.adContainer = self.view;`改为`[self.view addSubview:self.bannerAd];`
+
+
 
 1. 引入相关模块：
 
 ```objectivec
-#import <AdKleinSDK/AdKleinSDKBannerAd.h>
+#import <AdKleinSDK/AdKleinSDKBannerAdView.h>
 ```
 
 2. 声明广告加载器：
 
 ```objectivec
-@property(nonatomic, strong) AdKleinSDKBannerAd *bannerAd;
+@property(nonatomic, strong) AdKleinSDKBannerAdView *bannerAd;
 ```
 
-3. 实现`AdKleinSDKBannerAdDelegate`相关回调：
+3. 实现`AdKleinSDKBannerAdViewDelegate`相关回调：
 
 ```objectivec
-- (void)ak_bannerAdDidClose:(AdKleinSDKBannerAd *)bannerAd {
+- (void)ak_bannerAdDidClose:(AdKleinSDKBannerAdView *)bannerAd {
     NSString *func = [NSString stringWithFormat:@"%s",__func__];
     [self showString:func];
 }
-- (void)ak_bannerAdDidFail:(AdKleinSDKBannerAd *)bannerAd withError:(NSError *)error {
+- (void)ak_bannerAdDidFail:(AdKleinSDKBannerAdView *)bannerAd withError:(NSError *)error {
     [self showError:error];
 }
-- (void)ak_bannerAdDidLoad:(AdKleinSDKBannerAd *)bannerAd {
+- (void)ak_bannerAdDidLoad:(AdKleinSDKBannerAdView *)bannerAd {
     NSString *func = [NSString stringWithFormat:@"%s",__func__];
     [self showString:func];
 }
-- (void)ak_bannerAdDidShow:(AdKleinSDKBannerAd *)bannerAd {
+- (void)ak_bannerAdDidShow:(AdKleinSDKBannerAdView *)bannerAd {
     NSString *func = [NSString stringWithFormat:@"%s",__func__];
     [self showString:func];
 }
-- (void)ak_bannerAdDidClick:(AdKleinSDKBannerAd *)bannerAd {
+- (void)ak_bannerAdDidClick:(AdKleinSDKBannerAdView *)bannerAd {
     NSString *func = [NSString stringWithFormat:@"%s",__func__];
     [self showString:func];
 }
@@ -490,11 +498,11 @@ Banner横幅广告建议放置在 **固定位置**，而非TableView等控件中
 4. 执行广告加载器获取广告：
 
 ```objectivec
-  self.bannerAd = [[AdKleinSDKBannerAd alloc] initWithPlacementId:CONST_BANNER_ID viewController:self];
+  self.bannerAd = [[AdKleinSDKBannerAdView alloc] initWithPlacementId:CONST_BANNER_ID viewController:self];
   self.bannerAd.delegate = self;
-  self.bannerAd.bannerFrame =CGRectMake(0, 400, 375, 60);
-  self.bannerAd.adContainer = self.view;
-  self.bannerAd.animated = YES;
+  self.bannerAd.frame =CGRectMake(0, 400, 375, 60);
+  self.bannerAd.animated = YES; // 仅部分上游支持
+  [self.view addSubview:self.bannerAd]; 
   [self.bannerAd load];
 ```
 
@@ -929,35 +937,53 @@ self.adLoader.adSize = CGSizeMake(300, 400);
 
 ### 通用问题
 
+#### 运行时报错'building for iOS Simulator, but linking in object file built for iOS, for architecture arm64'
+
+请检查以下配置：
+
+- 升级Cocoapods到1.10.x以上
+- 在应用Project的Target下，`Architectures`为默认值`$(ARCHS_STANDARD)`
+- `Build Active Architecture Only`(`ONLY_ACTIVE_ARCH`)值为Yes
+- 删除`Valid Architectures`(`VALID_ARCHS`)配置项
+- 在Podfile文件末尾添加
+```
+post_install do |installer|
+  installer.pods_project.build_configurations.each do |config|
+    config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
+  end
+end
+```
+然后清理缓存和Pods文件夹，并重新执行`pod install`
+
 #### 为什么返回的广告中有重复广告？
 
-A：同一个广告主在广告后台会使用相似的素材内容创建多个广告计划，因此平台在返回的广告中可能会有很多相似内容的广告，但是这些广告对应的广告计划ID是不相同的。
+同一个广告主在广告后台会使用相似的素材内容创建多个广告计划，因此平台在返回的广告中可能会有很多相似内容的广告，但是这些广告对应的广告计划ID是不相同的。
 
 ### 开屏广告常见问题
 
 #### 开屏广告的容器需要注意什么？
 
-A：**开屏广告的高度必须大于等于屏幕高度（手机屏幕完整高度，包括状态栏）的75%**，否则可能会影响收益计费（广点通的开屏甚至会影响跳过按钮的回调）。
+**开屏广告的高度必须大于等于屏幕高度（手机屏幕完整高度，包括状态栏）的75%**，否则可能会影响收益计费（广点通的开屏甚至会影响跳过按钮的回调）。
 
 ### 横幅广告常见问题
 
 #### Banner横幅广告的尺寸问题？
 
-A：Banner广告支持多种尺寸比例，可在后台创建广告位时配置，Banner广告的宽度将会撑满容器，高度自适应，建议Banner广告容器高度也为自适应。
+Banner广告支持多种尺寸比例，可在后台创建广告位时配置，Banner广告的宽度将会撑满容器，高度自适应，建议Banner广告容器高度也为自适应。
 
 #### Banner横幅广告的建议位置
 
-A：Banner横幅广告建议放置在 **固定位置**，而非TableView等控件中充当Cell。
+Banner横幅广告建议放置在 **固定位置**，而非TableView等控件中充当Cell。
 
 ### 信息流广告常见问题
 
 #### 信息流广告中自渲染和模板的区别
 
-A：信息流广告，具备自渲染和模板两种广告样式：自渲染是SDK将返回广告标题、描述、Icon、图片、多媒体视图等信息，开发者可通过自行拼装渲染成喜欢的样式；模板样式则是返回拼装好的广告视图，开发者只需将视图添加到相应容器即可，模板样式的容器高度建议是自适应
+信息流广告，具备自渲染和模板两种广告样式：自渲染是SDK将返回广告标题、描述、Icon、图片、多媒体视图等信息，开发者可通过自行拼装渲染成喜欢的样式；模板样式则是返回拼装好的广告视图，开发者只需将视图添加到相应容器即可，模板样式的容器高度建议是自适应
 
 ### 激励视频、全屏视频、插屏广告常见问题
 
-A:**激励视频广告**是播放一段视频，播放完成或其他特定情况下（不同平台有所差异）会给予激励回调，激励视频一般是需要播放完成后才能退出播放界面；**全屏视频广告**类似激励视频，但是全屏视频没有激励回调，全屏视频一般在播放一段时间后即可退出当前播放界面；**插屏广告**一般是以弹窗的形式展示图文或视频，也有部分平台是单独的全屏界面进行展示；
+**激励视频广告**是播放一段视频，播放完成或其他特定情况下（不同平台有所差异）会给予激励回调，激励视频一般是需要播放完成后才能退出播放界面；**全屏视频广告**类似激励视频，但是全屏视频没有激励回调，全屏视频一般在播放一段时间后即可退出当前播放界面；**插屏广告**一般是以弹窗的形式展示图文或视频，也有部分平台是单独的全屏界面进行展示；
 
 
 
@@ -984,5 +1010,6 @@ A:**激励视频广告**是播放一段视频，播放完成或其他特定情�
 
 | 版本号  |    日期    | 更新日志                                                     |
 | ------- | :--------: | ------------------------------------------------------------ |
+| v3.2.0 | 2021-08-31 | 优化横幅广告，请注意接入方式变更； |
 | v3.1.0 | 2021-07-30 | 更新AdMobiusSDK； |
 | V3.0.1 | 2021-06-25 | 3.0全新发布，产品更名为AdKleinSDK，支持Cocoapods在线安装，2.x版本用户请注意接入代码更新； |
