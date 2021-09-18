@@ -33,10 +33,6 @@
 	return YES;
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-	[self loadSplashAd];
-}
-
 - (void)initSDK {
 	[self initBugly];
 

@@ -43,28 +43,26 @@ class SplashAdVC: BaseViewController, AdKleinSDKSplashAdDelegate {
     }
 
     override func loadClick() {
-        if adLoader == nil {
-            adLoader = AdKleinSDKSplashAd(placementId: Constant.SPLASH_ID, window: UIApplication.shared.keyWindow!)
-            adLoader?.delegate = self
-            
-            if isSkip {
-                //自定义跳过按钮  非必须
-                skipView = UIButton(frame: CGRect(x: UIScreen.main.bounds.size.width - 80, y: UIScreen.main.bounds.size.height - 80, width: 60, height: 30))
-                skipView?.addTarget(self, action: #selector(self.skipViewClick), for: .touchUpInside)
-                skipView?.setTitle("跳过", for: .normal)
-                skipView?.setTitleColor(UIColor.white, for: .normal)
-                skipView?.layer.cornerRadius = 15.0
-                skipView?.titleLabel?.font = UIFont.systemFont(ofSize: 14.0)
-                skipView?.backgroundColor = UIColor.black.withAlphaComponent(0.7)
-                adLoader?.skipView = skipView
-            }
-            if isBottom {
-                //自定义底部view  非必须
-                bottomView = UIImageView(frame: CGRect(x: 0, y: 0, width: Constant.ScreenWidth, height: Constant.ScreenHeight * 0.25))
-                bottomView?.image = UIImage(named: "bottom")
-                bottomView?.contentMode = .scaleAspectFill
-                adLoader?.bottomView = bottomView
-            }
+        adLoader = AdKleinSDKSplashAd(placementId: Constant.SPLASH_ID, window: UIApplication.shared.keyWindow!)
+        adLoader?.delegate = self
+        
+        if isSkip {
+            //自定义跳过按钮  非必须
+            skipView = UIButton(frame: CGRect(x: UIScreen.main.bounds.size.width - 80, y: UIScreen.main.bounds.size.height - 80, width: 60, height: 30))
+            skipView?.addTarget(self, action: #selector(self.skipViewClick), for: .touchUpInside)
+            skipView?.setTitle("跳过", for: .normal)
+            skipView?.setTitleColor(UIColor.white, for: .normal)
+            skipView?.layer.cornerRadius = 15.0
+            skipView?.titleLabel?.font = UIFont.systemFont(ofSize: 14.0)
+            skipView?.backgroundColor = UIColor.black.withAlphaComponent(0.7)
+            adLoader?.skipView = skipView
+        }
+        if isBottom {
+            //自定义底部view  非必须
+            bottomView = UIImageView(frame: CGRect(x: 0, y: 0, width: Constant.ScreenWidth, height: Constant.ScreenHeight * 0.25))
+            bottomView?.image = UIImage(named: "bottom")
+            bottomView?.contentMode = .scaleAspectFill
+            adLoader?.bottomView = bottomView
         }
         adLoader?.load()
     }

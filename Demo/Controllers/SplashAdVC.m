@@ -60,32 +60,31 @@
 }
 
 - (void)loadClick {
-    if (!self.adLoader) {
-        UIWindow *window = [[UIApplication sharedApplication] keyWindow];
-        self.adLoader = [[AdKleinSDKSplashAd alloc] initWithPlacementId:CONST_SPLASH_ID window:window];
-        self.adLoader.delegate = self;
+    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+    self.adLoader = [[AdKleinSDKSplashAd alloc] initWithPlacementId:CONST_SPLASH_ID window:window];
+    self.adLoader.delegate = self;
 
 
-        if (self.isSkip) {
-            //自定义跳过按钮  非必须
-            _skipView = [[UIButton alloc]initWithFrame:CGRectMake([[UIScreen mainScreen] bounds].size.width - 80, [[UIScreen mainScreen] bounds].size.height - 80, 60, 30)];
-            [_skipView addTarget:self action:@selector(skipViewClick) forControlEvents:UIControlEventTouchUpInside];
-            [_skipView setTitle:@"跳过" forState:UIControlStateNormal];
-            [_skipView setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            [_skipView.layer setCornerRadius:15.0];
-            _skipView.titleLabel.font = [UIFont systemFontOfSize: 14.0];
-            _skipView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.7f];
-            self.adLoader.skipView = self.skipView;
-        }
-
-        if (self.isBottom) {
-            //自定义底部view  非必须
-            _bottomView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width,[UIScreen mainScreen].bounds.size.height*0.25)];
-            _bottomView.image = [UIImage imageNamed:@"bottom"];
-            _bottomView.contentMode = UIViewContentModeScaleAspectFill;
-            self.adLoader.bottomView = _bottomView;
-        }
+    if (self.isSkip) {
+        //自定义跳过按钮  非必须
+        _skipView = [[UIButton alloc]initWithFrame:CGRectMake([[UIScreen mainScreen] bounds].size.width - 80, [[UIScreen mainScreen] bounds].size.height - 80, 60, 30)];
+        [_skipView addTarget:self action:@selector(skipViewClick) forControlEvents:UIControlEventTouchUpInside];
+        [_skipView setTitle:@"跳过" forState:UIControlStateNormal];
+        [_skipView setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_skipView.layer setCornerRadius:15.0];
+        _skipView.titleLabel.font = [UIFont systemFontOfSize: 14.0];
+        _skipView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.7f];
+        self.adLoader.skipView = self.skipView;
     }
+
+    if (self.isBottom) {
+        //自定义底部view  非必须
+        _bottomView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width,[UIScreen mainScreen].bounds.size.height*0.25)];
+        _bottomView.image = [UIImage imageNamed:@"bottom"];
+        _bottomView.contentMode = UIViewContentModeScaleAspectFill;
+        self.adLoader.bottomView = _bottomView;
+    }
+    
     [self.adLoader load];
 }
 

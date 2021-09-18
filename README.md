@@ -268,29 +268,29 @@ SKAdNetwork 是接收iOS端营销推广活动归因数据的一种方法。
 ```xml
 <key>SKAdNetworkItems</key>
 <array>
-// 穿山甲
-<dict>
+  // 穿山甲
+  <dict>
     <key>SKAdNetworkIdentifier</key>
     <string>238da6jt44.skadnetwork</string>
-</dict>
-<dict>
+  </dict>
+  <dict>
     <key>SKAdNetworkIdentifier</key>
     <string>x2jnk7ly8j.skadnetwork</string>
-</dict>
-<dict>
+  </dict>
+  <dict>
     <key>SKAdNetworkIdentifier</key>
     <string>22mmun2rn5.skadnetwork</string>
-</dict>
-// 优量汇（广点通）
-<dict>
+  </dict>
+  // 优量汇（广点通）
+  <dict>
     <key>SKAdNetworkIdentifier</key>
     <string>f7s53z58qe.skadnetwork</string>
-</dict>
-// Admob（谷歌广告）
-<dict>
+  </dict>
+  // Admob（谷歌广告）
+  <dict>
     <key>SKAdNetworkIdentifier</key>
     <string>cstr6suwn9.skadnetwork</string>
-</dict>
+  </dict>
 </array>
 ```
 
@@ -318,26 +318,49 @@ SKAdNetwork 是接收iOS端营销推广活动归因数据的一种方法。
 
 - (void)requestIDFA {
   [ATTrackingManager requestTrackingAuthorizationWithCompletionHandler:^(ATTrackingManagerAuthorizationStatus status) {
-    [self requestAd];
   }];
 }
 ```
 
+```swift
+import AppTrackingTransparency
+import AdSupport
+
+func requestIDFA {
+  ATTrackingManager.requestTrackingAuthorization(completionHandler: {
+  })
+}
+```
+
+**注意：** 申请权限的回调方法不在主线程，不可直接进行SDK的初始化和广告加载。
+
+
 
 ## 示例代码
+
+### 引入SDK模块
+
+```objectivec
+#import <AdKleinSDK/AdKleinSDK.h>
+```
+
+```swift
+import AdKleinSDK
+```
 
 ### SDK初始化
 
 在 AppDelegate.m 中进行SDK的初始化
 
 ```objectivec
-#import <AdKleinSDK/AdKleinSDK.h>
-
-// 初始化AdKleinSDK
 [AdKleinSDKConfig initMediaId:CONST_MEDIA_ID];
 ```
 
-**PS ：mediaId通过后台配置生成，初始化必须在主线程中进行，SDK暂不支持多进程。**
+```swift
+AdKleinSDKConfig.initMediaId(Constant.MEDIA_ID)
+```
+
+**注意：**mediaId需要在运营平台上创建并获取。
 
 #### Admob的单独处理
 
@@ -366,6 +389,14 @@ SKAdNetwork 是接收iOS端营销推广活动归因数据的一种方法。
 [AdKleinSDKConfig initMediaId:CONST_MEDIA_ID];
 ```
 
+```swift
+AdKleinSDKConfig.debugMode()
+// 初始化AdKleinSDK
+AdKleinSDKConfig.initMediaId(Constant.MEDIA_ID)
+```
+
+
+
 #### 获取版本号
 
 ```objectivec
@@ -375,75 +406,223 @@ NSString *sdkVersion = [AdKleinSDKConfig sdkVersion];
 NSString *sdkVersionCode = [AdKleinSDKConfig sdkVersionCode];
 ```
 
+```swift
+//SDK版本号，如：3.0.0
+let sdkVersion = AdKleinSDKConfig.sdkVersion()
+//SDK数字版本号，如：30001 
+let sdkVersionCode = AdKleinSDKConfig.sdkVersionCode()
+```
+
 
 
 ### <a name="ad_splash">开屏广告示例</a>
 
 开屏广告建议在闪屏页进行展示，开屏广告的宽度和高度取决于容器的宽高，都是会撑满广告容器；**开屏广告的高度必须大于等于屏幕高度（手机屏幕完整高度，包括状态栏之类）的75%**，否则可能会影响收益计费（广点通的开屏甚至会影响跳过按钮的回调）。
 
-1. 引入相关模块：
+1. 声明广告加载器：
 
 ```objectivec
-#import <AdKleinSDK/AdKleinSDKSplashAd.h>
+@property(nonatomic, strong) AdKleinSDKSplashAd *adLoader;
 ```
 
-2. 声明广告加载器：
-
-```objectivec
-@property(nonatomic, strong) AdKleinSDKSplashAd *splashAd;
+```swift
+var adLoader: AdKleinSDKSplashAd?
 ```
 
-3. 实现`AdKleinSDKSplashAdDelegate`相关回调：
+
+2. 实现`AdKleinSDKSplashAdDelegate`相关回调：
 
 ```objectivec
-- (void)ak_splashAdDidSkip:(AdKleinSDKSplashAd *)splashAd {
-    NSString *func = [NSString stringWithFormat:@"%s",__func__];
-    [self showString:func];
-}
-- (void)ak_splashAdTimeOver:(AdKleinSDKSplashAd *)splashAd {
-    NSString *func = [NSString stringWithFormat:@"%s",__func__];
-    [self showString:func];
-}
-- (void)ak_splashAdDidFail:(AdKleinSDKSplashAd *)splashAd withError:(NSError *)error {
-    [self showError:error];
-}
+/**
+ 广告拉取成功
+ @param splashAd 广告加载器实例
+*/
 - (void)ak_splashAdDidLoad:(AdKleinSDKSplashAd *)splashAd {
-    NSString *func = [NSString stringWithFormat:@"%s",__func__];
-    [self showString:func];
 }
+/**
+ 广告拉取失败
+ @param splashAd 广告加载器实例
+ @param error 错误描述
+*/
+- (void)ak_splashAdDidFail:(AdKleinSDKSplashAd *)splashAd withError:(NSError *)error {
+}
+/**
+ 广告展示
+ @param splashAd 广告加载器实例
+*/
 - (void)ak_splashAdDidShow:(AdKleinSDKSplashAd *)splashAd {
-    NSString *func = [NSString stringWithFormat:@"%s",__func__];
-    [self showString:func];
 }
+/**
+ 广告点击
+ @param splashAd 广告加载器实例
+*/
 - (void)ak_splashAdDidClick:(AdKleinSDKSplashAd *)splashAd {
-    NSString *func = [NSString stringWithFormat:@"%s",__func__];
-    [self showString:func];
 }
+/**
+ 广告关闭
+ @param splashAd 广告加载器实例
+*/
 - (void)ak_splashAdDidClose:(AdKleinSDKSplashAd *)splashAd {
-    NSString *func = [NSString stringWithFormat:@"%s",__func__];
-    [self showString:func];
+}
+/**
+ 点击跳过
+ @param splashAd 广告加载器实例
+*/
+- (void)ak_splashAdDidSkip:(AdKleinSDKSplashAd *)splashAd {
+}
+/**
+ 倒计时结束
+ @param splashAd 广告加载器实例
+*/
+- (void)ak_splashAdTimeOver:(AdKleinSDKSplashAd *)splashAd {
+}
+```
+```swift
+/**
+ 广告拉取成功
+ @param splashAd 广告加载器实例
+*/
+func ak_splashAdDidLoad(_ splashAd: AdKleinSDKSplashAd) {
+}
+/**
+ 广告拉取失败
+ @param splashAd 广告加载器实例
+ @param error 错误描述
+*/
+func ak_splashAdDidFail(_ splashAd: AdKleinSDKSplashAd, withError error: Error) {
+}
+/**
+ 广告展示
+ @param splashAd 广告加载器实例
+*/
+func ak_splashAdDidShow(_ splashAd: AdKleinSDKSplashAd) {
+}
+/**
+ 广告点击
+ @param splashAd 广告加载器实例
+*/
+func ak_splashAdDidClick(_ splashAd: AdKleinSDKSplashAd) {
+}
+/**
+ 广告关闭
+ @param splashAd 广告加载器实例
+*/
+func ak_splashAdDidClose(_ splashAd: AdKleinSDKSplashAd) {
+}
+/**
+ 点击跳过
+ @param splashAd 广告加载器实例
+*/
+func ak_splashAdDidSkip(_ splashAd: AdKleinSDKSplashAd) {
+}
+/**
+ 倒计时结束
+ @param splashAd 广告加载器实例
+*/
+func ak_splashAdTimeOver(_ splashAd: AdKleinSDKSplashAd) {
 }
 ```
 
-4. 执行广告加载器获取广告：
+3. 执行广告加载器获取广告：
 
 ```objectivec
-self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-self.window.rootViewController = [ViewController new];
-[self.window makeKeyAndVisible];
+self.adLoader = [[AdKleinSDKSplashAd alloc] initWithPlacementId:CONST_SPLASH_ID window:self.window];
+self.adLoader.delegate = self;
+[self.adLoader load];
+```
 
-self.splashAd = [[AdKleinSDKSplashAd alloc] initWithPlacementId:CONST_SPLASH_ID window:self.window];
-self.splashAd.delegate = self;
-[self.splashAd load];
+```swift
+adLoader = AdKleinSDKSplashAd(placementId: Constant.SPLASH_ID, window: window!)
+adLoader?.delegate = self
+adLoader?.load()
+```
+
+**注意：**开屏广告在展示结束前需要用本地变量存储以避免提前释放导致异常。
+
+**注意：**3.3.0之后开屏广告实例可以重复执行load，无需每次都重新创建。
+
+#### 自定义底部View
+
+```objectivec
+_bottomView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width,[UIScreen mainScreen].bounds.size.height*0.25)];
+_bottomView.image = [UIImage imageNamed:@"bottom"];
+_bottomView.contentMode = UIViewContentModeScaleAspectFill;
+self.adLoader.bottomView = _bottomView;
+```
+```swift
+bottomView = UIImageView(frame: CGRect(x: 0, y: 0, width: Constant.ScreenWidth, height: Constant.ScreenHeight * 0.25))
+bottomView?.image = UIImage(named: "bottom")
+bottomView?.contentMode = .scaleAspectFill
+adLoader?.bottomView = bottomView
+```
+
+**注意：** 目前仅穿山甲、广点通、莫比乌斯支持该功能。
+
+#### 自定义跳过按钮
+
+```objectivec
+_skipView = [[UIButton alloc]initWithFrame:CGRectMake([[UIScreen mainScreen] bounds].size.width - 80, [[UIScreen mainScreen] bounds].size.height - 80, 60, 30)];
+[_skipView addTarget:self action:@selector(skipViewClick) forControlEvents:UIControlEventTouchUpInside];
+[_skipView setTitle:@"跳过" forState:UIControlStateNormal];
+[_skipView setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+[_skipView.layer setCornerRadius:15.0];
+_skipView.titleLabel.font = [UIFont systemFontOfSize: 14.0];
+_skipView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.7f];
+self.adLoader.skipView = self.skipView;
+```
+
+```swift
+skipView = UIButton(frame: CGRect(x: UIScreen.main.bounds.size.width - 80, y: UIScreen.main.bounds.size.height - 80, width: 60, height: 30))
+skipView?.addTarget(self, action: #selector(self.skipViewClick), for: .touchUpInside)
+skipView?.setTitle("跳过", for: .normal)
+skipView?.setTitleColor(UIColor.white, for: .normal)
+skipView?.layer.cornerRadius = 15.0
+skipView?.titleLabel?.font = UIFont.systemFont(ofSize: 14.0)
+skipView?.backgroundColor = UIColor.black.withAlphaComponent(0.7)
+adLoader?.skipView = skipView
+```
+
+**注意：** 目前仅穿山甲、莫比乌斯支持该功能。
+
+#### 热启动展现开屏
+
+3.3.0新增功能，在App热启动时也可以请求开屏以增加收入。并且在管理平台中可以配置开屏广告的请求频率，用于控制用户体验。离开应用超过设定时间后，回到应用即可像冷启动一样展现开屏。在AppDelegate中进行以下配置即可实现：
+
+```objectivec
+- (void)applicationWillEnterForeground:(UIApplication *)application {
+    if (self.splashAd) {
+        [self.splashAd onActive];
+    }
+}
+- (void)applicationWillResignActive:(UIApplication *)application {
+    if (self.splashAd) {
+        [self.splashAd onDeactive];
+    }
+}
+```
+
+```swift
+func applicationWillEnterForeground(_ application: UIApplication) {
+  if (splashAd != nil) {
+    splashAd?.onActive()
+  }
+}
+
+func applicationWillResignActive(_ application: UIApplication) {
+  if (splashAd != nil) {
+    splashAd?.onDeactive()
+  }
+}
 ```
 
 #### 开屏广告优化建议
 
-1. 第一步加载一个白底，带logo的图
-2. 第二步给用户看隐私协议，点击同意
-3. app做获取权限，获取相应权限后请求广告
-4. 第四步还是 让用户看那个白底logo的图，等待2-3s加载广告
-5. 第五步放开机引导页
+可参考Demo中的实现。
+
+1. 先加载底图，避免首屏先于开屏广告被用户看到。
+2. 如果是首次启动，弹出隐私协议窗口，等待用户点击；用户点击同意后，继续申请获取IDFA。
+3. 初始化SDK并请求开屏广告。
+4. 在开屏加载失败、展现回调中移除底图，此时首页可见。
 
 
 
@@ -459,51 +638,104 @@ Banner横幅广告建议放置在 **固定位置**，而非TableView等控件中
 
 
 
-1. 引入相关模块：
-
-```objectivec
-#import <AdKleinSDK/AdKleinSDKBannerAdView.h>
-```
-
-2. 声明广告加载器：
+1. 声明广告加载器：
 
 ```objectivec
 @property(nonatomic, strong) AdKleinSDKBannerAdView *bannerAd;
 ```
 
-3. 实现`AdKleinSDKBannerAdViewDelegate`相关回调：
+```swift
+var bannerAd: AdKleinSDKBannerAdView?
+```
+
+2. 实现`AdKleinSDKBannerAdViewDelegate`相关回调：
 
 ```objectivec
-- (void)ak_bannerAdDidClose:(AdKleinSDKBannerAdView *)bannerAd {
-    NSString *func = [NSString stringWithFormat:@"%s",__func__];
-    [self showString:func];
-}
-- (void)ak_bannerAdDidFail:(AdKleinSDKBannerAdView *)bannerAd withError:(NSError *)error {
-    [self showError:error];
-}
+/**
+ 广告拉取成功
+ @param bannerAd 广告加载器实例
+*/
 - (void)ak_bannerAdDidLoad:(AdKleinSDKBannerAdView *)bannerAd {
-    NSString *func = [NSString stringWithFormat:@"%s",__func__];
-    [self showString:func];
 }
+/**
+ 广告拉取失败
+ @param bannerAd 广告加载器实例
+ @param error 错误描述
+*/
+- (void)ak_bannerAdDidFail:(AdKleinSDKBannerAdView *)bannerAd withError:(NSError *)error {
+}
+/**
+ 广告展示
+ @param bannerAd 广告加载器实例
+*/
 - (void)ak_bannerAdDidShow:(AdKleinSDKBannerAdView *)bannerAd {
-    NSString *func = [NSString stringWithFormat:@"%s",__func__];
-    [self showString:func];
 }
+/**
+ 广告点击
+ @param bannerAd 广告加载器实例
+*/
 - (void)ak_bannerAdDidClick:(AdKleinSDKBannerAdView *)bannerAd {
-    NSString *func = [NSString stringWithFormat:@"%s",__func__];
-    [self showString:func];
+}
+/**
+ 广告关闭
+ @param bannerAd 广告加载器实例
+*/
+- (void)ak_bannerAdDidClose:(AdKleinSDKBannerAdView *)bannerAd {
+}
+```
+```swift
+/**
+ 广告拉取成功
+ @param bannerAd 广告加载器实例
+*/
+func ak_bannerAdDidLoad(_ bannerAd: AdKleinSDKBannerAdView) {
+}
+/**
+ 广告拉取失败
+ @param bannerAd 广告加载器实例
+ @param error 错误描述
+*/
+func ak_bannerAdDidFail(_ bannerAd: AdKleinSDKBannerAdView, withError error: Error) {
+}
+/**
+ 广告展示
+ @param bannerAd 广告加载器实例
+*/
+func ak_bannerAdDidShow(_ bannerAd: AdKleinSDKBannerAdView) {
+}
+/**
+ 广告点击
+ @param bannerAd 广告加载器实例
+*/
+func ak_bannerAdDidClick(_ bannerAd: AdKleinSDKBannerAdView) {
+}
+/**
+ 广告关闭
+ @param bannerAd 广告加载器实例
+*/
+func ak_bannerAdDidClose(_ bannerAd: AdKleinSDKBannerAdView) {
 }
 ```
 
-4. 执行广告加载器获取广告：
+
+3. 执行广告加载器获取广告：
 
 ```objectivec
-  self.bannerAd = [[AdKleinSDKBannerAdView alloc] initWithPlacementId:CONST_BANNER_ID viewController:self];
-  self.bannerAd.delegate = self;
-  self.bannerAd.frame =CGRectMake(0, 400, 375, 60);
-  self.bannerAd.animated = YES; // 仅部分上游支持
-  [self.view addSubview:self.bannerAd]; 
-  [self.bannerAd load];
+self.bannerAd = [[AdKleinSDKBannerAdView alloc] initWithPlacementId:CONST_BANNER_ID viewController:self];
+self.bannerAd.delegate = self;
+self.bannerAd.frame =CGRectMake(0, 400, 375, 60);
+self.bannerAd.animated = YES; // 仅部分上游支持
+[self.view addSubview:self.bannerAd]; 
+[self.bannerAd load];
+```
+
+```swift
+bannerAd = AdKleinSDKBannerAdView(placementId: Constant.BANNER_ID, viewController: self)
+bannerAd?.delegate = self
+bannerAd?.frame = CGRect(x: 0, y: 400, width: 375, height: 60)
+bannerAd?.animated = true // 仅部分上游支持
+view.addSubview(bannerAd!)
+bannerAd?.load()
 ```
 
 
@@ -514,26 +746,29 @@ Banner横幅广告建议放置在 **固定位置**，而非TableView等控件中
 
 #### 自渲染
 
-1. 引入相关模块：
-
-```objectivec
-#import <AdKleinSDK/AdKleinSDKNativeAd.h>
-```
-
-2. 声明广告加载器：
+1. 声明广告加载器：
 
 ```objectivec
 @property(nonatomic, strong) AdKleinSDKNativeAd *adLoader;
 ```
 
-3. 实现`AdKleinSDKNativeAdDelegate`相关回调，其中需要在加载成功回调中对拿到的广告视图进行渲染：
+```swift
+var adLoader: AdKleinSDKNativeAd?
+```
+
+2. 实现`AdKleinSDKNativeAdDelegate`相关回调，其中需要在加载成功回调中对拿到的广告视图进行渲染：
 
 ```objectivec
+/**
+ 广告拉取成功
+ 获取到广告view后，需要根据data数据进行自渲染
+ @param nativeAd 广告加载器实例
+ @param adViews 自渲染广告视图数组
+*/
 - (void)ak_nativeAdDidLoad:(AdKleinSDKNativeAd *)nativeAd withAdViews:(NSArray<__kindof UIView<AdKleinSDKNativeAdViewDelegate> *> *)adViews {
-  NSString *func = [NSString stringWithFormat:@"%s",__func__];
-  [self showString:func];
-  //    self.adViews = adViews;
   for (UIView<AdKleinSDKNativeAdViewDelegate> *adView in adViews) {
+    [self.adViews addObject:adView];
+    
     CGFloat width = self.scrollView.frame.size.width;
     CGFloat height = 300;
     adView.frame = CGRectMake(0, self.adY, width, height);
@@ -559,10 +794,8 @@ Banner横幅广告建议放置在 **固定位置**，而非TableView等控件中
     [closeButton setTitle:@"remove" forState:UIControlStateNormal];
     [closeButton addTarget:adView action:@selector(ak_close) forControlEvents:UIControlEventTouchUpInside];
 
-    NSLog(@"AdKleinSDKDemo: NativeAd Mode = %lu", (unsigned long)nativeAdData.imageMode);
-
     switch (nativeAdData.imageMode) {
-      case AK_NATIVE_AD_LARGE_IMAGE:
+      case AK_NATIVE_AD_LARGE_IMAGE: // 大图
         {
           UIImageView *single = [[UIImageView alloc] initWithFrame:CGRectMake(15, 70, width-30, 200)];
           [adView addSubview:single];
@@ -570,7 +803,7 @@ Banner横幅广告建议放置在 **固定位置**，而非TableView等控件中
           [adView ak_registViews:@[title, desc, single]];
         }
         break;
-      case AK_NATIVE_AD_SMALL_IMAGE:
+      case AK_NATIVE_AD_SMALL_IMAGE: // 小图
         {
           UIImageView *single = [[UIImageView alloc] initWithFrame:CGRectMake(15, 70, width-30, 200)];
           [adView addSubview:single];
@@ -578,10 +811,10 @@ Banner横幅广告建议放置在 **固定位置**，而非TableView等控件中
           [adView ak_registViews:@[title, desc, single]];
         }
         break;
-      case AK_NATIVE_AD_THREE_SMALL:
+      case AK_NATIVE_AD_THREE_SMALL: // 三图
         {
           CGFloat imageWidth = (width - 16) / 3;
-          CGFloat imageRate = 228 / 150.0; // 三小图默认比例
+          CGFloat imageRate = 228 / 150.0;
           UIImageView *imageView0 = [[UIImageView alloc] initWithFrame:CGRectMake(8, 84, imageWidth, imageWidth / imageRate)];
           UIImageView *imageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(16 + imageWidth, 84, imageWidth, imageWidth / imageRate)];
           UIImageView *imageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(24 + imageWidth * 2, 84, imageWidth, imageWidth / imageRate)];
@@ -595,7 +828,7 @@ Banner横幅广告建议放置在 **固定位置**，而非TableView等控件中
           [adView ak_registViews:@[title, desc, imageView0, imageView1, imageView2]];
         }
         break;
-      case AK_NATIVE_AD_VIDEO:
+      case AK_NATIVE_AD_VIDEO: // 视频
         {
           UIView *video = adView.mediaView;
           video.frame = CGRectMake(15, 70, width-30, 200);
@@ -609,21 +842,163 @@ Banner横幅广告建议放置在 **固定位置**，而非TableView等控件中
     }
   }
 }
-
+/**
+ 广告拉取失败
+ @param nativeAd 广告加载器实例
+ @param error 错误描述
+*/
 - (void)ak_nativeAdDidFail:(AdKleinSDKNativeAd *)nativeAd withError:(NSError *)error {
-  [self showError:error];
 }
+/**
+ 广告展示
+ @param nativeAd 广告加载器实例
+ @param adView 自渲染广告视图
+ */
 - (void)ak_nativeAdDidShow:(AdKleinSDKNativeAd *)nativeAd adView:(__kindof UIView<AdKleinSDKNativeAdViewDelegate> *)adView {
-  NSString *func = [NSString stringWithFormat:@"%s",__func__];
-  [self showString:func];
 }
+/**
+ 广告点击
+ @param nativeAd 广告加载器实例
+ @param adView 自渲染广告视图
+ */
 - (void)ak_nativeAdDidClick:(AdKleinSDKNativeAd *)nativeAd adView:(__kindof UIView<AdKleinSDKNativeAdViewDelegate> *)adView {
-  NSString *func = [NSString stringWithFormat:@"%s",__func__];
-  [self showString:func];
 }
+/**
+ 广告关闭
+ @param nativeAd 广告加载器实例
+ @param adView 自渲染广告视图
+ */
 - (void)ak_nativeAdDidClose:(AdKleinSDKNativeAd *)nativeAd adView:(__kindof UIView<AdKleinSDKNativeAdViewDelegate> *)adView {
-  NSString *func = [NSString stringWithFormat:@"%s",__func__];
-  [self showString:func];
+  [self.adViews removeObject:adView];
+}
+```
+
+```swift
+/**
+ 广告拉取成功
+ 获取到广告view后，需要根据data数据进行自渲染
+ @param nativeAd 广告加载器实例
+ @param adViews 自渲染广告视图数组
+*/
+func ak_nativeAdDidLoad(_ nativeAd: AdKleinSDKNativeAd, withAdViews adViews: [UIView & AdKleinSDKNativeAdViewDelegate]){
+  // 将获取到的广告视图进行模板渲染
+  for adView in adViews {
+    self.adViews.append(adView)
+
+    let width = Constant.ScreenWidth
+    let height: CGFloat = 300
+    adView.frame = CGRect(x: 0, y: adY, width: width, height: height)
+    adView.backgroundColor = UIColor(red: 0.6, green: 0.6, blue: 0.9, alpha: 0.3)
+    scrollView?.addSubview(adView)
+    adY += height + 20
+    scrollView?.contentSize = CGSize(width: width, height: adY + 100)
+
+    let nativeAdData = adView.data
+    let title = UILabel(frame: CGRect(x: 15, y: 0, width: width - 30, height: 20))
+    title.text = nativeAdData.title
+    adView.addSubview(title)
+
+    let desc = UILabel(frame: CGRect(x: 15, y: 30, width: width - 30, height: 40))
+    desc.text = nativeAdData.desc
+    adView.addSubview(desc)
+
+    // 展示关闭按钮
+    let closeButton = UIButton()
+    adView.addSubview(closeButton)
+    adView.bringSubviewToFront(closeButton)
+    closeButton.frame = CGRect(x: width - 80, y: 0, width: 80, height: 44)
+    closeButton.setTitle("remove", for: .normal)
+    closeButton.addTarget(adView, action: #selector(AdKleinSDKNativeAdViewDelegate.ak_close), for: .touchUpInside)
+
+    switch nativeAdData.imageMode {
+      case AK_NATIVE_AD_TYPE.LARGE_IMAGE: // 大图
+      let single = UIImageView(frame: CGRect(x: 15, y: 70, width: width - 30, height: 200))
+      adView.addSubview(single)
+
+      let url : URL = URL.init(string: nativeAdData.images![0])!
+      let data : NSData! = NSData(contentsOf: url)
+      if data != nil {
+        single.image = UIImage(data: data as Data)
+      }
+
+      adView.ak_registViews([title, desc, single])
+      break
+      case AK_NATIVE_AD_TYPE.SMALL_IMAGE: // 小图
+      let single = UIImageView(frame: CGRect(x: 15, y: 70, width: width - 30, height: 200))
+      adView.addSubview(single)
+
+      let url = URL.init(string: nativeAdData.images![0])!
+      let data = NSData(contentsOf: url)
+      if data != nil {
+        single.image = UIImage(data: data! as Data)
+      }
+
+      adView.ak_registViews([title, desc, single])
+      break
+      case AK_NATIVE_AD_TYPE.THREE_SMALL: // 三图
+      let imageWidth: CGFloat = (width - 16) / 3
+      let imageRate: CGFloat = 228 / 150.0
+      let imageView0 = UIImageView(frame: CGRect(x: 8, y: 84, width: imageWidth, height: imageWidth / imageRate))
+      let imageView1 = UIImageView(frame: CGRect(x: 16 + imageWidth, y: 84, width: imageWidth, height: imageWidth / imageRate))
+      let imageView2 = UIImageView(frame: CGRect(x: 24 + imageWidth * 2, y: 84, width: imageWidth, height: imageWidth / imageRate))
+
+      let url0 = URL.init(string: nativeAdData.images![0])!
+      let data0 = NSData(contentsOf: url0)
+      if data0 != nil {
+        imageView0.image = UIImage(data: data0! as Data)
+      }
+      let url1 = URL.init(string: nativeAdData.images![1])!
+      let data1 = NSData(contentsOf: url1)
+      if data1 != nil {
+        imageView1.image = UIImage(data: data1! as Data)
+      }
+      let url2 = URL.init(string: nativeAdData.images![2])!
+      let data2 = NSData(contentsOf: url2)
+      if data2 != nil {
+        imageView2.image = UIImage(data: data2! as Data)
+      }
+
+      adView.ak_registViews([title, desc, imageView0, imageView1, imageView2])
+      break
+      case AK_NATIVE_AD_TYPE.VIDEO: // 视频
+      let video = adView.mediaView
+      video.frame = CGRect(x: 15, y: 70, width: width - 30, height: 200)
+      adView.addSubview(video)
+      adView.ak_registViews([title, desc, video])
+      break
+      default:
+      break
+    }
+  }
+}
+/**
+ 广告拉取失败
+ @param nativeAd 广告加载器实例
+ @param error 错误描述
+*/
+func ak_nativeAdDidFail(_ nativeAd: AdKleinSDKNativeAd, withError error: Error) {
+}
+/**
+ 广告展示
+ @param nativeAd 广告加载器实例
+ @param adView 自渲染广告视图
+ */
+func ak_nativeAdDidShow(_ nativeAd: AdKleinSDKNativeAd, adView: UIView & AdKleinSDKNativeAdViewDelegate){
+}
+/**
+ 广告点击
+ @param nativeAd 广告加载器实例
+ @param adView 自渲染广告视图
+ */
+func ak_nativeAdDidClick(_ nativeAd: AdKleinSDKNativeAd, adView: UIView & AdKleinSDKNativeAdViewDelegate){
+}
+/**
+ 广告关闭
+ @param nativeAd 广告加载器实例
+ @param adView 自渲染广告视图
+ */
+func ak_nativeAdDidClose(_ nativeAd: AdKleinSDKNativeAd, adView: UIView & AdKleinSDKNativeAdViewDelegate){
+  adViews.removeAll{$0 == adView}
 }
 ```
 
@@ -634,11 +1009,24 @@ for (id adView in self.adViews) {
   if([adView conformsToProtocol:@protocol(AdKleinSDKNativeAdViewDelegate)]) {
     // 取消注册
     [(id<AdKleinSDKNativeAdViewDelegate>)adView ak_unRegistView];
+    [adView removeFromSuperview];
   }
 }
 ```
 
-4. 执行广告加载器获取广告：
+```swift
+for adView in adViews {
+  if adView is AdKleinSDKNativeAdViewDelegate {
+    // 取消注册
+    (adView as? AdKleinSDKNativeAdViewDelegate)?.ak_unRegistView()
+    adView.removeFromSuperview()
+  }
+}
+```
+
+
+
+3. 执行广告加载器获取广告：
 
 - 信息流广告加载器支持重复load。
 
@@ -651,41 +1039,58 @@ if(!self.adLoader) {
 [self.adLoader load];
 ```
 
+```swift
+if (adLoader == nil) {
+  adLoader = AdKleinSDKNativeAd(placementId: Constant.NATIVE_ID, viewController: self)
+  adLoader?.delegate = self
+  adLoader?.adCount = 3
+}
+adLoader?.load()
+```
+
 
 
 #### 模版渲染
 
-1. 引入相关模块：
-
-```objectivec
-#import <AdKleinSDK/AdKleinSDKNativeExpressAd.h>
-```
-
-2. 声明广告加载器：
+1. 声明广告加载器：
 
 ```objectivec
 @property(nonatomic, strong) AdKleinSDKNativeExpressAd *adLoader;
 ```
+```swift
+var adLoader: AdKleinSDKNativeExpressAd?
+```
 
-3. 实现`AdKleinSDKNativeExpressAdDelegate`相关回调：
+2. 实现`AdKleinSDKNativeExpressAdDelegate`相关回调：
 
 - 在加载成功回调中对广告视图执行render方法以进行模板渲染。
 - 在渲染成功回调中再将广告视图加入列表进行展现，因为此时才能获取真实的高度。
 
 ```objectivec
+/**
+ 广告拉取成功
+ 获取到广告view后，需要执行render方法进行渲染
+ @param nativeExpressAd 广告加载器实例
+ @param adViews 模板广告视图数组
+*/
 - (void)ak_nativeExpressAdDidLoad:(AdKleinSDKNativeExpressAd *)nativeAd withAdViews:(NSArray<__kindof UIView<AdKleinSDKNativeExpressAdViewDelegate> *> *)adViews {
   // 将获取到的广告视图进行模板渲染
   [adViews enumerateObjectsUsingBlock:^(UIView<AdKleinSDKNativeExpressAdViewDelegate> *adView, NSUInteger idx, BOOL * _Nonnull stop) {
     [adView render];
   }];
-
-  NSString *func = [NSString stringWithFormat:@"%s",__func__];
-  [self showString:func];
 }
-
+/**
+ 广告拉取失败
+ @param nativeExpressAd 广告加载器实例
+ @param error 错误描述
+*/
 - (void)ak_nativeExpressAdDidFail:(AdKleinSDKNativeExpressAd *)nativeAd withError:(NSError *)error {
-  [self showError:error];
 }
+/**
+ 广告渲染成功
+ @param nativeExpressAd 广告加载器实例
+ @param adView 模板广告视图
+ */
 - (void)ak_nativeExpressAdDidRenderSuccess:(AdKleinSDKNativeExpressAd *)nativeAd adView:(__kindof UIView<AdKleinSDKNativeExpressAdViewDelegate> *)adView {
   // 渲染成功才能拿到真实的高度
   dispatch_async(dispatch_get_main_queue(), ^{
@@ -695,34 +1100,112 @@ if(!self.adLoader) {
     [self.dataArray addObject:adView];
     [self.tableView reloadData];
   });
-
-  NSString *func = [NSString stringWithFormat:@"%s",__func__];
-  [self showString:func];
 }
+/**
+ 广告渲染失败
+ @param nativeExpressAd 广告加载器实例
+ @param adView 模板广告视图
+ */
 - (void)ak_nativeExpressAdDidRenderFail:(AdKleinSDKNativeExpressAd *)nativeAd adView:(__kindof UIView<AdKleinSDKNativeExpressAdViewDelegate> *)adView {
-  NSString *func = [NSString stringWithFormat:@"%s",__func__];
-  [self showString:func];
 }
+/**
+ 广告展现
+ @param nativeExpressAd 广告加载器实例
+ @param adView 模板广告视图
+ */
 - (void)ak_nativeExpressAdDidShow:(AdKleinSDKNativeExpressAd *)nativeAd adView:(__kindof UIView<AdKleinSDKNativeExpressAdViewDelegate> *)adView {
-  NSString *func = [NSString stringWithFormat:@"%s",__func__];
-  [self showString:func];
 }
+/**
+ 广告点击
+ @param nativeExpressAd 广告加载器实例
+ @param adView 模板广告视图
+ */
 - (void)ak_nativeExpressAdDidClick:(AdKleinSDKNativeExpressAd *)nativeAd adView:(__kindof UIView<AdKleinSDKNativeExpressAdViewDelegate> *)adView {
-  NSString *func = [NSString stringWithFormat:@"%s",__func__];
-  [self showString:func];
 }
+/**
+ 广告关闭
+ @param nativeExpressAd 广告加载器实例
+ @param adView 模板广告视图
+ */
 - (void)ak_nativeExpressAdDidClose:(AdKleinSDKNativeExpressAd *)nativeAd adView:(__kindof UIView<AdKleinSDKNativeExpressAdViewDelegate> *)adView {
   [adView removeFromSuperview];
   [self.dataArray removeObject:adView];
   [self.tableView reloadData];
-
-  NSString *func = [NSString stringWithFormat:@"%s",__func__];
-  [self showString:func];
 }
 
 ```
 
-4. 执行广告加载器获取广告：
+```swift
+/**
+ 广告拉取成功
+ 获取到广告view后，需要执行render方法进行渲染
+ @param nativeExpressAd 广告加载器实例
+ @param adViews 模板广告视图数组
+*/
+func ak_nativeExpressAdDidLoad(_ nativeAd: AdKleinSDKNativeExpressAd, withAdViews adViews: [UIView & AdKleinSDKNativeExpressAdViewDelegate]){
+  // 将获取到的广告视图进行模板渲染
+  for adView in adViews {
+    adView.render()
+  }
+}
+/**
+ 广告拉取失败
+ @param nativeExpressAd 广告加载器实例
+ @param error 错误描述
+*/
+func ak_nativeExpressAdDidFail(_ nativeAd: AdKleinSDKNativeExpressAd, withError error: Error) {
+}
+/**
+ 广告渲染成功
+ @param nativeExpressAd 广告加载器实例
+ @param adView 模板广告视图
+ */
+func ak_nativeExpressAdDidRenderSuccess(_ nativeAd: AdKleinSDKNativeExpressAd, adView: UIView & AdKleinSDKNativeExpressAdViewDelegate){
+  // 渲染成功才能拿到真实的高度
+  DispatchQueue.main.async(execute: { [self] in
+                                     for _ in 0..<6 {
+                                       dataArray.append(NSNull())
+                                     }
+                                     dataArray.append(adView)
+                                     tableView?.reloadData()
+                                    })
+}
+/**
+ 广告渲染失败
+ @param nativeExpressAd 广告加载器实例
+ @param adView 模板广告视图
+ */
+func ak_nativeExpressAdDidRenderFail(_ nativeAd: AdKleinSDKNativeExpressAd, adView: UIView & AdKleinSDKNativeExpressAdViewDelegate){
+}
+/**
+ 广告展现
+ @param nativeExpressAd 广告加载器实例
+ @param adView 模板广告视图
+ */
+func ak_nativeExpressAdDidShow(_ nativeAd: AdKleinSDKNativeExpressAd, adView: UIView & AdKleinSDKNativeExpressAdViewDelegate){
+}
+/**
+ 广告点击
+ @param nativeExpressAd 广告加载器实例
+ @param adView 模板广告视图
+ */
+func ak_nativeExpressAdDidClick(_ nativeAd: AdKleinSDKNativeExpressAd, adView: UIView & AdKleinSDKNativeExpressAdViewDelegate){
+}
+/**
+ 广告关闭
+ @param nativeExpressAd 广告加载器实例
+ @param adView 模板广告视图
+ */
+func ak_nativeExpressAdDidClose(_ nativeAd: AdKleinSDKNativeExpressAd, adView: UIView & AdKleinSDKNativeExpressAdViewDelegate){
+  adView.removeFromSuperview()
+  dataArray.removeAll { $0 as AnyObject === adView as AnyObject }
+  tableView?.reloadData()
+}
+```
+
+
+
+3. 执行广告加载器获取广告：
 
 - 信息流广告加载器支持重复load。
 - 模板信息流的adSize只有宽度设置有效，高度会由模板渲染自适应。
@@ -740,73 +1223,190 @@ if (!self.adLoader) {
 [self.adLoader load];
 ```
 
+```swift
+if (adLoader == nil) {
+  adSize = CGSize(width: view.frame.size.width, height: 0)
+
+  adLoader = AdKleinSDKNativeExpressAd(placementId: Constant.NATIVE_EXPRESS_ID, viewController: self)
+  adLoader?.delegate = self
+  adLoader?.adSize = adSize
+  adLoader?.videoMuted = false
+  adLoader?.adCount = 3
+}
+
+adLoader?.load()
+```
+
+
+
 ### <a name="ad_reward_video">激励视频广告示例</a>
 
 将短视频融入到APP场景当中，用户观看短视频广告后可以给予一些应用内奖励。
 
-1. 引入相关模块：
-
-```objectivec
-#import <AdKleinSDK/AdKleinSDKRewardVideoAd.h>
-```
-
-2. 声明广告加载器：
+1. 声明广告加载器：
 
 ```objectivec
 @property(nonatomic, strong) AdKleinSDKRewardVideoAd *adLoader;
 ```
 
-3. 实现`AdKleinSDKRewardVideoAdDelegate`相关回调：
+```swift
+var adLoader: AdKleinSDKRewardVideoAd?
+```
+
+
+
+2. 实现`AdKleinSDKRewardVideoAdDelegate`相关回调：
 
 ```objectivec
-- (void)ak_rewardVideoAdDidClose:(AdKleinSDKRewardVideoAd *)rewardVideoAd {
-  NSString *func = [NSString stringWithFormat:@"%s",__func__];
-  [self showString:func];
-}
-
-- (void)ak_rewardVideoAdDidComplete:(AdKleinSDKRewardVideoAd *)rewardVideoAd {
-  NSString *func = [NSString stringWithFormat:@"%s",__func__];
-  [self showString:func];
-}
-
-- (void)ak_rewardVideoAdDidSkip:(AdKleinSDKRewardVideoAd *)rewardVideoAd {
-  NSString *func = [NSString stringWithFormat:@"%s",__func__];
-  [self showString:func];
-}
-
-- (void)ak_rewardVideoAdDidFail:(AdKleinSDKRewardVideoAd *)rewardVideoAd withError:(NSError *)error {
-  [self showError:error];
-}
-
+/**
+ 广告基础数据加载成功
+ @param rewardVideoAd 广告加载器实例
+*/
 - (void)ak_rewardVideoAdDidLoad:(AdKleinSDKRewardVideoAd *)rewardVideoAd {
-  NSString *func = [NSString stringWithFormat:@"%s",__func__];
-  [self showString:func];
 }
-
+/**
+ 广告加载失败
+ @param rewardVideoAd 广告加载器实例
+ @param error 错误描述
+*/
+- (void)ak_rewardVideoAdDidFail:(AdKleinSDKRewardVideoAd *)rewardVideoAd withError:(NSError *)error {
+}
+/**
+ 广告视频数据下载完成。
+ 在此回调后才可执行show方法。
+ @param rewardVideoAd 广告加载器实例
+*/
 - (void)ak_rewardVideoAdDidDownload:(AdKleinSDKRewardVideoAd *)rewardVideoAd {
-  NSString *func = [NSString stringWithFormat:@"%s",__func__];
-  [self showString:func];
   // 此处仅为示例用，表明在广告下载完之后才能执行展现，实际使用时建议提前加载视频，以提升用户体验
   [self.adView show];
 }
-
-- (void)ak_rewardVideoAdDidShow:(AdKleinSDKRewardVideoAd *)rewardVideoAd {
-  NSString *func = [NSString stringWithFormat:@"%s",__func__];
-  [self showString:func];
+/**
+ 广告播放中发生错误
+ @param rewardVideoAd 广告加载器实例
+ @param error 错误描述
+*/
+- (void)ak_rewardVideoAdDidRenderFail:(AdKleinSDKRewardVideoAd *)rewardVideoAd withError:(NSError *)error {
 }
-
+/**
+ 广告展示
+ @param rewardVideoAd 广告加载器实例
+*/
+- (void)ak_rewardVideoAdDidShow:(AdKleinSDKRewardVideoAd *)rewardVideoAd {
+}
+/**
+ 广告点击
+ @param rewardVideoAd 广告加载器实例
+*/
 - (void)ak_rewardVideoAdDidClick:(AdKleinSDKRewardVideoAd *)rewardVideoAd {
-  NSString *func = [NSString stringWithFormat:@"%s",__func__];
-  [self showString:func];
+}
+/**
+ 广告关闭
+ @param rewardVideoAd 广告加载器实例
+*/
+- (void)ak_rewardVideoAdDidClose:(AdKleinSDKRewardVideoAd *)rewardVideoAd {
+}
+/**
+ 完成奖励发放条件
+ @param rewardVideoAd 广告加载器实例
+*/
+- (void)ak_rewardVideoAdDidRewardEffective:(AdKleinSDKRewardVideoAd *)rewardVideoAd {
+}
+/**
+ 视频播放完成
+ @param rewardVideoAd 广告加载器实例
+*/
+- (void)ak_rewardVideoAdDidComplete:(AdKleinSDKRewardVideoAd *)rewardVideoAd {
+}
+/**
+ 点击跳过
+ @param rewardVideoAd 广告加载器实例
+*/
+- (void)ak_rewardVideoAdDidSkip:(AdKleinSDKRewardVideoAd *)rewardVideoAd {
 }
 ```
 
-4. 执行广告加载器获取广告：
+```swift
+/**
+ 广告基础数据加载成功
+ @param rewardVideoAd 广告加载器实例
+*/
+func ak_rewardVideoAdDidLoad(_ rewardVideoAd: AdKleinSDKRewardVideoAd) {
+}
+/**
+ 广告加载失败
+ @param rewardVideoAd 广告加载器实例
+ @param error 错误描述
+*/
+func ak_rewardVideoAdDidFail(_ rewardVideoAd: AdKleinSDKRewardVideoAd, withError error: Error) {
+}
+/**
+ 广告视频数据下载完成。
+ 在此回调后才可执行show方法。
+ @param rewardVideoAd 广告加载器实例
+*/
+func ak_rewardVideoAdDidDownload(_ rewardVideoAd: AdKleinSDKRewardVideoAd) {
+  // 此处仅为示例用，表明在广告下载完之后才能执行展现，实际使用时建议提前加载视频，以提升用户体验
+  adLoader?.show()
+}
+/**
+ 广告播放中发生错误
+ @param rewardVideoAd 广告加载器实例
+ @param error 错误描述
+*/
+func ak_rewardVideoAdDidRenderFail(_ rewardVideoAd: AdKleinSDKRewardVideoAd, withError error: Error) {
+}
+/**
+ 广告展示
+ @param rewardVideoAd 广告加载器实例
+*/
+func ak_rewardVideoAdDidShow(_ rewardVideoAd: AdKleinSDKRewardVideoAd) {
+}
+/**
+ 广告点击
+ @param rewardVideoAd 广告加载器实例
+*/
+func ak_rewardVideoAdDidClick(_ rewardVideoAd: AdKleinSDKRewardVideoAd) {
+}
+/**
+ 广告关闭
+ @param rewardVideoAd 广告加载器实例
+*/
+func ak_rewardVideoAdDidClose(_ rewardVideoAd: AdKleinSDKRewardVideoAd) {
+}
+/**
+ 完成奖励发放条件
+ @param rewardVideoAd 广告加载器实例
+*/
+func ak_rewardVideoAdDidRewardEffective(_ rewardVideoAd: AdKleinSDKRewardVideoAd) {
+}
+/**
+ 视频播放完成
+ @param rewardVideoAd 广告加载器实例
+*/
+func ak_rewardVideoAdDidComplete(_ rewardVideoAd: AdKleinSDKRewardVideoAd) {
+}
+/**
+ 点击跳过
+ @param rewardVideoAd 广告加载器实例
+*/
+func ak_rewardVideoAdDidSkip(_ rewardVideoAd: AdKleinSDKRewardVideoAd) {
+}
+```
+
+
+
+3. 执行广告加载器获取广告：
 
 ```objectivec
 self.adLoader = [[AdKleinSDKRewardVideoAd alloc] initWithPlacementId:CONST_REWARD_VIDEO_ID viewController:self];
 self.adLoader.delegate = self;
 [self.adLoader load];
+```
+
+```swift
+adLoader = AdKleinSDKRewardVideoAd(placementId: Constant.REWARD_VIDEO_ID, viewController: self)
+adLoader?.delegate = self
+adLoader?.load()
 ```
 
 
@@ -815,51 +1415,119 @@ self.adLoader.delegate = self;
 
 全屏视频广告是类似激励视频样式的广告形式，与激励视频不同之处在于全屏视频广告播放一定时间时间后即可跳过，同时全屏视频广告拥有跳过回调不具备奖励回调。
 
-1. 引入相关模块：
-
-```objectivec
-#import <AdKleinSDK/AdKleinSDKFullScreenVideoAd.h>
-```
-
-2. 声明广告加载器：
+1. 声明广告加载器：
 
 ```objectivec
 @property(nonatomic, strong) AdKleinSDKFullScreenVideoAd *adLoader;
 ```
 
-3. 实现`AdKleinSDKFullScreenVideoAdDelegate`相关回调：
+```swift
+var adLoader: AdKleinSDKFullScreenVideoAd?
+```
+
+
+
+2. 实现`AdKleinSDKFullScreenVideoAdDelegate`相关回调：
 
 ```objectivec
-- (void)ak_fullScreenVideoAdDidClose:(AdKleinSDKFullScreenVideoAd *)fullScreenVideoAd {
-    NSString *func = [NSString stringWithFormat:@"%s",__func__];
-    [self showString:func];
-}
-- (void)ak_fullScreenVideoAdDidComplete:(AdKleinSDKFullScreenVideoAd *)fullScreenVideoAd {
-    NSString *func = [NSString stringWithFormat:@"%s",__func__];
-    [self showString:func];
-}
-- (void)ak_fullScreenVideoAdDidSkip:(AdKleinSDKFullScreenVideoAd *)fullScreenVideoAd {
-    NSString *func = [NSString stringWithFormat:@"%s",__func__];
-    [self showString:func];
-}
-- (void)ak_fullScreenVideoAdDidFail:(AdKleinSDKFullScreenVideoAd *)fullScreenVideoAd withError:(NSError *)error{
-    [self showError:error];
-}
+/**
+ 广告加载成功
+ @param fullScreenVideoAd 广告加载器实例
+*/
 - (void)ak_fullScreenVideoAdDidLoad:(AdKleinSDKFullScreenVideoAd *)fullScreenVideoAd {
-    NSString *func = [NSString stringWithFormat:@"%s",__func__];
-    [self showString:func];
+  // 此处仅为示例用，表明在广告下载完之后才能执行展现，实际使用时建议提前加载广告，以提升用户体验
+  [self.adLoader show];
 }
+/**
+ 广告加载失败
+ @param fullScreenVideoAd 广告加载器实例
+ @param error 错误描述
+*/
+- (void)ak_fullScreenVideoAdDidFail:(AdKleinSDKFullScreenVideoAd *)fullScreenVideoAd withError:(NSError *)error{
+}
+/**
+ 广告展示
+ @param fullScreenVideoAd 广告加载器实例
+*/
 - (void)ak_fullScreenVideoAdDidShow:(AdKleinSDKFullScreenVideoAd *)fullScreenVideoAd {
-    NSString *func = [NSString stringWithFormat:@"%s",__func__];
-    [self showString:func];
 }
+/**
+ 广告点击
+ @param fullScreenVideoAd 广告加载器实例
+*/
 - (void)ak_fullScreenVideoAdDidClick:(AdKleinSDKFullScreenVideoAd *)fullScreenVideoAd {
-    NSString *func = [NSString stringWithFormat:@"%s",__func__];
-    [self showString:func];
+}
+/**
+ 广告关闭
+ @param fullScreenVideoAd 广告加载器实例
+*/
+- (void)ak_fullScreenVideoAdDidClose:(AdKleinSDKFullScreenVideoAd *)fullScreenVideoAd {
+}
+/**
+ 视频播放完成
+ @param fullScreenVideoAd 广告加载器实例
+*/
+- (void)ak_fullScreenVideoAdDidComplete:(AdKleinSDKFullScreenVideoAd *)fullScreenVideoAd {
+}
+/**
+ 点击跳过
+ @param fullScreenVideoAd 广告加载器实例
+*/
+- (void)ak_fullScreenVideoAdDidSkip:(AdKleinSDKFullScreenVideoAd *)fullScreenVideoAd {
 }
 ```
 
-4. 执行广告加载器获取广告：
+```swift
+/**
+ 广告加载成功
+ @param fullScreenVideoAd 广告加载器实例
+*/
+func ak_fullScreenVideoAdDidLoad(_ fullScreenVideoAd: AdKleinSDKFullScreenVideoAd) {
+  // 此处仅为示例用，表明在广告下载完之后才能执行展现，实际使用时建议提前加载广告，以提升用户体验
+  adLoader?.show()
+}
+/**
+ 广告加载失败
+ @param fullScreenVideoAd 广告加载器实例
+ @param error 错误描述
+*/
+func ak_fullScreenVideoAdDidFail(_ fullScreenVideoAd: AdKleinSDKFullScreenVideoAd, withError error: Error) {
+}
+/**
+ 广告展示
+ @param fullScreenVideoAd 广告加载器实例
+*/
+func ak_fullScreenVideoAdDidShow(_ fullScreenVideoAd: AdKleinSDKFullScreenVideoAd) {
+}
+/**
+ 广告点击
+ @param fullScreenVideoAd 广告加载器实例
+*/
+func ak_fullScreenVideoAdDidClick(_ fullScreenVideoAd: AdKleinSDKFullScreenVideoAd) {
+}
+/**
+ 广告关闭
+ @param fullScreenVideoAd 广告加载器实例
+*/
+func ak_fullScreenVideoAdDidClose(_ fullScreenVideoAd: AdKleinSDKFullScreenVideoAd) {
+}
+/**
+ 视频播放完成
+ @param fullScreenVideoAd 广告加载器实例
+*/
+func ak_fullScreenVideoAdDidComplete(_ fullScreenVideoAd: AdKleinSDKFullScreenVideoAd) {
+}
+/**
+ 点击跳过
+ @param fullScreenVideoAd 广告加载器实例
+*/
+func ak_fullScreenVideoAdDidSkip(_ fullScreenVideoAd: AdKleinSDKFullScreenVideoAd) {
+}
+```
+
+
+
+3. 执行广告加载器获取广告：
 
 ```objectivec
 self.adLoader = [[AdKleinSDKFullScreenVideoAd alloc] initWithPlacementId:CONST_FULLSCREEN_ID viewController:self];
@@ -871,64 +1539,150 @@ self.adLoader.maxVideoDuration = 100*1000;
 [self.adLoader load];
 ```
 
+```swift
+adLoader = AdKleinSDKFullScreenVideoAd(placementId: Constant.FULLSCREEN_ID, viewController: self)
+adLoader?.delegate = self
+adLoader?.detailPageVideoMuted = true
+adLoader?.videoAutoPlayOnWWAN = true
+adLoader?.minVideoDuration = 5
+adLoader?.maxVideoDuration = 100 * 1000
+adLoader?.load()
+```
+
 
 
 ### <a name="ad_interstitial">插屏广告示例</a>
 
 插屏广告是移动广告的一种常见形式，在应用流程中弹出，当应用展示插屏广告时，用户可以选择点击广告，也可以将其关闭并返回应用。
 
-1. 引入相关模块：
-
-```objectivec
-#import <AdKleinSDK/AdKleinSDKInterstitialAd.h>
-```
-
-2. 声明广告加载器：
+1. 声明广告加载器：
 
 ```objectivec
 @property(nonatomic, strong) AdKleinSDKInterstitialAd *adLoader;
 ```
 
-3. 实现`AdKleinSDKInterstitialAdDelegate`相关回调：
+```swift
+var adLoader: AdKleinSDKInterstitialAd?
+```
+
+
+
+2. 实现`AdKleinSDKInterstitialAdDelegate`相关回调：
 
 ```objectivec
-- (void)ak_interstitialAdDidClose:(AdKleinSDKInterstitialAd *)interstitialAd {
-  NSString *func = [NSString stringWithFormat:@"%s",__func__];
-  [self showString:func];
-}
-- (void)ak_interstitialAdDidRenderFail:(AdKleinSDKInterstitialAd *)interstitialAd withError:(NSError *)error {
-  [self showError:error];
-}
-- (void)ak_interstitialAdDidRenderSuccess:(AdKleinSDKInterstitialAd *)interstitialAd {
-  NSString *func = [NSString stringWithFormat:@"%s",__func__];
-  [self showString:func];
-}
-- (void)ak_interstitialAdDidFail:(AdKleinSDKInterstitialAd *)interstitialAd withError:(NSError *)error {
-  [self showError:error];
-}
+/**
+ 广告拉取成功
+ @param interstitialAd 广告加载器实例
+*/
 - (void)ak_interstitialAdDidLoad:(AdKleinSDKInterstitialAd *)interstitialAd {
-  NSString *func = [NSString stringWithFormat:@"%s",__func__];
-  [self showString:func];
   // 此处仅为示例用，表明在广告下载完之后才能执行展现，实际使用时建议提前加载广告，以提升用户体验
-  [self.adView show];
+  [self.adLoader show];
 }
+/**
+ 广告拉取失败
+ @param interstitialAd 广告加载器实例
+ @param error 错误描述
+*/
+- (void)ak_interstitialAdDidFail:(AdKleinSDKInterstitialAd *)interstitialAd withError:(NSError *)error {
+}
+/**
+ 广告渲染成功
+ @param interstitialAd 广告加载器实例
+*/
+- (void)ak_interstitialAdDidRenderSuccess:(AdKleinSDKInterstitialAd *)interstitialAd {
+}
+/**
+ 广告渲染失败
+ @param interstitialAd 广告加载器实例
+ @param error 错误描述
+*/
+- (void)ak_interstitialAdDidRenderFail:(AdKleinSDKInterstitialAd *)interstitialAd withError:(NSError *)error {
+}
+/**
+ 广告展示
+ @param interstitialAd 广告加载器实例
+*/
 - (void)ak_interstitialAdDidShow:(AdKleinSDKInterstitialAd *)interstitialAd {
-  NSString *func = [NSString stringWithFormat:@"%s",__func__];
-  [self showString:func];
 }
+/**
+ 广告点击
+ @param interstitialAd 广告加载器实例
+*/
 - (void)ak_interstitialAdDidClick:(AdKleinSDKInterstitialAd *)interstitialAd{
-  NSString *func = [NSString stringWithFormat:@"%s",__func__];
-  [self showString:func];
+}
+/**
+ 广告关闭
+ @param interstitialAd 广告加载器实例
+*/
+- (void)ak_interstitialAdDidClose:(AdKleinSDKInterstitialAd *)interstitialAd {
 }
 ```
 
-4. 执行广告加载器获取广告：
+```swift
+/**
+ 广告拉取成功
+ @param interstitialAd 广告加载器实例
+*/
+func ak_interstitialAdDidLoad(_ interstitialAd: AdKleinSDKInterstitialAd) {
+// 此处仅为示例用，表明在广告下载完之后才能执行展现，实际使用时建议提前加载广告，以提升用户体验
+  adLoader?.show()
+}
+/**
+ 广告拉取失败
+ @param interstitialAd 广告加载器实例
+ @param error 错误描述
+*/
+func ak_interstitialAdDidFail(_ interstitialAd: AdKleinSDKInterstitialAd, withError error: Error) {
+}
+/**
+ 广告渲染成功
+ @param interstitialAd 广告加载器实例
+*/
+func ak_interstitialAdDidRenderSuccess(_ interstitialAd: AdKleinSDKInterstitialAd) {
+}
+/**
+ 广告渲染失败
+ @param interstitialAd 广告加载器实例
+ @param error 错误描述
+*/
+func ak_interstitialAdDidRenderFail(_ interstitialAd: AdKleinSDKInterstitialAd, withError error: Error) {
+}
+/**
+ 广告展示
+ @param interstitialAd 广告加载器实例
+*/
+func ak_interstitialAdDidShow(_ interstitialAd: AdKleinSDKInterstitialAd) {
+}
+/**
+ 广告点击
+ @param interstitialAd 广告加载器实例
+*/
+func ak_interstitialAdDidClick(_ interstitialAd: AdKleinSDKInterstitialAd) {
+}
+/**
+ 广告关闭
+ @param interstitialAd 广告加载器实例
+*/
+func ak_interstitialAdDidClose(_ interstitialAd: AdKleinSDKInterstitialAd) {
+}
+```
+
+
+
+3. 执行广告加载器获取广告：
 
 ```objectivec
 self.adLoader = [[AdKleinSDKInterstitialAd alloc] initWithPlacementId:CONST_INTERSTITIAL_ID viewController:self];
 self.adLoader.delegate = self;
 self.adLoader.adSize = CGSizeMake(300, 400);
 [self.adLoader load];
+```
+
+```swift
+adLoader = AdKleinSDKInterstitialAd(placementId: Constant.INTERSTITIAL_ID, viewController: self)
+adLoader?.delegate = self
+adLoader?.adSize = CGSize(width: 300, height: 400)
+adLoader?.load()
 ```
 
 
@@ -965,6 +1719,10 @@ end
 
 **开屏广告的高度必须大于等于屏幕高度（手机屏幕完整高度，包括状态栏）的75%**，否则可能会影响收益计费（广点通的开屏甚至会影响跳过按钮的回调）。
 
+#### 广点通开屏在3秒后直接关闭且未触发关闭回调、穿山甲开屏点击跳过或者倒计时结束时广告不会移除
+
+开屏广告对象在创建后需要用本地变量保存以继续持有，否则会被提前释放，导致此类问题。
+
 ### 横幅广告常见问题
 
 #### Banner横幅广告的尺寸问题？
@@ -991,18 +1749,19 @@ Banner横幅广告建议放置在 **固定位置**，而非TableView等控件中
 
 
 
-| 错误码 |               描述               | 排查方向                                                     |
-| ------ | :------------------------------: | ------------------------------------------------------------ |
-| 1001   |           mediaId为空            |                                                              |
-| 1002   |            无可用上游            | 检查应用和广告位是否配置正确且通过审核                       |
-| 1003   |          初始化上游异常          |                                                              |
-| 2000   |   上游初始化失败，无法加载广告   |                                                              |
-| 2001   | 广告配置未加载完成或加载出现错误 |                                                              |
-| 2002   |          广告位加载异常          |                                                              |
-| 2003   |      无可用的上游广告位配置      | 通过之前的日志检查是否所有上游都加载失败，或未获取到有效的广告位配置 |
-| 2004   |        无匹配的上游适配器        |                                                              |
-| 2005   |         加载广告配置超时         |                                                              |
-|        |                                  |                                                              |
+| 错误码 |                 描述                 | 排查方向                                                     |
+| ------ | :----------------------------------: | ------------------------------------------------------------ |
+| 1001   |             mediaId为空              |                                                              |
+| 1002   |              无可用上游              | 检查应用和广告位是否配置正确且通过审核                       |
+| 1003   |            初始化上游异常            |                                                              |
+| 2000   |     上游初始化失败，无法加载广告     |                                                              |
+| 2001   |   广告配置未加载完成或加载出现错误   |                                                              |
+| 2002   |            广告位加载异常            |                                                              |
+| 2003   |        无可用的上游广告位配置        | 通过之前的日志检查是否所有上游都加载失败，或未获取到有效的广告位配置 |
+| 2004   |          无匹配的上游适配器          |                                                              |
+| 2005   |           加载广告配置超时           |                                                              |
+| 3001   | 距离上次开屏展现的时间间隔小于设定值 | 在管理平台上设置开屏间隔时长                                 |
+| 3002   | 开屏广告热启动功能已关闭，不发起开屏 | 在管理平台上设置开屏间隔时长                                 |
 
 
 
@@ -1010,6 +1769,8 @@ Banner横幅广告建议放置在 **固定位置**，而非TableView等控件中
 
 | 版本号  |    日期    | 更新日志                                                     |
 | ------- | :--------: | ------------------------------------------------------------ |
+| v3.3.1 | 2021-09-23 | 支持Admob的开屏与信息流模板；开屏支持设置间隔时长；信息流模板支持后台配置自动刷新； |
 | v3.2.0 | 2021-08-31 | 优化横幅广告，请注意接入方式变更； |
 | v3.1.0 | 2021-07-30 | 更新AdMobiusSDK； |
 | V3.0.1 | 2021-06-25 | 3.0全新发布，产品更名为AdKleinSDK，支持Cocoapods在线安装，2.x版本用户请注意接入代码更新； |
+

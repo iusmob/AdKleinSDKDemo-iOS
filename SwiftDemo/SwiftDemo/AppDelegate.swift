@@ -32,11 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AdKleinSDKSplashAdDelegat
         initSDK()
         return true
     }
-    
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        loadSplashAd()
-    }
-    
+        
     func initSDK() {
         initBugly()
 
