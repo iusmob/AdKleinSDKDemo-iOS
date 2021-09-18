@@ -9,7 +9,7 @@
 import SwiftUI
 
 class SplashAdVC: BaseViewController, AdKleinSDKSplashAdDelegate {
-    var splashAd: AdKleinSDKSplashAd?
+    var adLoader: AdKleinSDKSplashAd?
     
     var bottomView: UIImageView?
     var skipView: UIButton?
@@ -43,9 +43,9 @@ class SplashAdVC: BaseViewController, AdKleinSDKSplashAdDelegate {
     }
 
     override func loadClick() {
-        if splashAd == nil {
-            splashAd = AdKleinSDKSplashAd(placementId: Constant.SPLASH_ID, window: UIApplication.shared.keyWindow!)
-            splashAd?.delegate = self
+        if adLoader == nil {
+            adLoader = AdKleinSDKSplashAd(placementId: Constant.SPLASH_ID, window: UIApplication.shared.keyWindow!)
+            adLoader?.delegate = self
             
             if isSkip {
                 //自定义跳过按钮  非必须
@@ -56,21 +56,21 @@ class SplashAdVC: BaseViewController, AdKleinSDKSplashAdDelegate {
                 skipView?.layer.cornerRadius = 15.0
                 skipView?.titleLabel?.font = UIFont.systemFont(ofSize: 14.0)
                 skipView?.backgroundColor = UIColor.black.withAlphaComponent(0.7)
-                splashAd?.skipView = skipView
+                adLoader?.skipView = skipView
             }
             if isBottom {
                 //自定义底部view  非必须
                 bottomView = UIImageView(frame: CGRect(x: 0, y: 0, width: Constant.ScreenWidth, height: Constant.ScreenHeight * 0.25))
                 bottomView?.image = UIImage(named: "bottom")
                 bottomView?.contentMode = .scaleAspectFill
-                splashAd?.bottomView = bottomView
+                adLoader?.bottomView = bottomView
             }
         }
-        splashAd?.load()
+        adLoader?.load()
     }
     
     @objc func skipViewClick() {
-        splashAd?.remove()
+        adLoader?.remove()
     }
     
     @objc func customSkipSwitchClick(_ sw: UISwitch?) {

@@ -58,16 +58,12 @@
 }
 
 #pragma mark 协议方法
-- (void)ak_bannerAdDidClose:(AdKleinSDKBannerAdView *)bannerAd {
+- (void)ak_bannerAdDidLoad:(AdKleinSDKBannerAdView *)bannerAd {
     NSString *func = [NSString stringWithFormat:@"%s",__func__];
     [self showString:func];
 }
 - (void)ak_bannerAdDidFail:(AdKleinSDKBannerAdView *)bannerAd withError:(NSError *)error {
     [self showError:error];
-}
-- (void)ak_bannerAdDidLoad:(AdKleinSDKBannerAdView *)bannerAd {
-    NSString *func = [NSString stringWithFormat:@"%s",__func__];
-    [self showString:func];
 }
 - (void)ak_bannerAdDidShow:(AdKleinSDKBannerAdView *)bannerAd {
     NSString *func = [NSString stringWithFormat:@"%s",__func__];
@@ -77,7 +73,10 @@
     NSString *func = [NSString stringWithFormat:@"%s",__func__];
     [self showString:func];
 }
-
+- (void)ak_bannerAdDidClose:(AdKleinSDKBannerAdView *)bannerAd {
+    NSString *func = [NSString stringWithFormat:@"%s",__func__];
+    [self showString:func];
+}
 /*
 #pragma mark - Navigation
 

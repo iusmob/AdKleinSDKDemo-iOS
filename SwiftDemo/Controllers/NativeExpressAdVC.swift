@@ -81,6 +81,9 @@ class NativeExpressAdVC: BaseViewController, AdKleinSDKNativeExpressAdDelegate, 
     
     func ak_nativeExpressAdDidClose(_ nativeAd: AdKleinSDKNativeExpressAd, adView: UIView & AdKleinSDKNativeExpressAdViewDelegate){
         showString(#function)
+        adView.removeFromSuperview()
+        dataArray.removeAll { $0 as AnyObject === adView as AnyObject }
+        tableView?.reloadData()
     }
     
     // MARK: - tableView

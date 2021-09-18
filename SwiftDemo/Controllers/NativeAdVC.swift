@@ -13,7 +13,7 @@ class NativeAdVC: BaseViewController, AdKleinSDKNativeAdDelegate {
     
     var scrollView: UIScrollView?
     var adY: CGFloat = 0.0
-    var adViews: [UIView & AdKleinSDKNativeAdViewDelegate] = []
+    var adViews: [UIView] = []
     var removeBtn: UIButton?
     
     override func viewDidLoad() {
@@ -46,8 +46,10 @@ class NativeAdVC: BaseViewController, AdKleinSDKNativeAdDelegate {
     
     @objc func removeClick() {
         for adView in adViews {
-            adView.ak_unRegistView()
-            adView.removeFromSuperview()
+            if adView is AdKleinSDKNativeAdViewDelegate {
+                (adView as? AdKleinSDKNativeAdViewDelegate)?.ak_unRegistView()
+                adView.removeFromSuperview()
+            }
         }
         adViews = []
         adY = 50

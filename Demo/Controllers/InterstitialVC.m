@@ -10,7 +10,7 @@
 
 @interface InterstitialVC () <AdKleinSDKInterstitialAdDelegate>
 
-@property (nonatomic, strong) AdKleinSDKInterstitialAd *adView;
+@property (nonatomic, strong) AdKleinSDKInterstitialAd *adLoader;
 
 
 @end
@@ -25,40 +25,40 @@
 
 
 - (void)loadClick {
-    if (self.adView) {
-        self.adView.delegate = nil;
-        self.adView = nil;
+    if (self.adLoader) {
+        self.adLoader.delegate = nil;
+        self.adLoader = nil;
     }
-    self.adView = [[AdKleinSDKInterstitialAd alloc] initWithPlacementId:CONST_INTERSTITIAL_ID viewController:self];
-    self.adView.delegate = self;
-    self.adView.adSize = CGSizeMake(300, 400);
-    [self.adView load];
+    self.adLoader = [[AdKleinSDKInterstitialAd alloc] initWithPlacementId:CONST_INTERSTITIAL_ID viewController:self];
+    self.adLoader.delegate = self;
+    self.adLoader.adSize = CGSizeMake(300, 400);
+    [self.adLoader load];
 }
 
-- (void)ak_interstitialAdDidClose:(AdKleinSDKInterstitialAd *)interstitialAd {
+- (void)ak_interstitialAdDidLoad:(AdKleinSDKInterstitialAd *)interstitialAd {
     NSString *func = [NSString stringWithFormat:@"%s",__func__];
     [self showString:func];
+    [self.adLoader show];
 }
-- (void)ak_interstitialAdDidRenderFail:(AdKleinSDKInterstitialAd *)interstitialAd withError:(NSError *)error {
+- (void)ak_interstitialAdDidFail:(AdKleinSDKInterstitialAd *)interstitialAd withError:(NSError *)error {
     [self showError:error];
 }
 - (void)ak_interstitialAdDidRenderSuccess:(AdKleinSDKInterstitialAd *)interstitialAd {
     NSString *func = [NSString stringWithFormat:@"%s",__func__];
     [self showString:func];
 }
-- (void)ak_interstitialAdDidFail:(AdKleinSDKInterstitialAd *)interstitialAd withError:(NSError *)error {
+- (void)ak_interstitialAdDidRenderFail:(AdKleinSDKInterstitialAd *)interstitialAd withError:(NSError *)error {
     [self showError:error];
-}
-- (void)ak_interstitialAdDidLoad:(AdKleinSDKInterstitialAd *)interstitialAd {
-    NSString *func = [NSString stringWithFormat:@"%s",__func__];
-    [self showString:func];
-    [self.adView show];
 }
 - (void)ak_interstitialAdDidShow:(AdKleinSDKInterstitialAd *)interstitialAd {
     NSString *func = [NSString stringWithFormat:@"%s",__func__];
     [self showString:func];
 }
 - (void)ak_interstitialAdDidClick:(AdKleinSDKInterstitialAd *)interstitialAd{
+    NSString *func = [NSString stringWithFormat:@"%s",__func__];
+    [self showString:func];
+}
+- (void)ak_interstitialAdDidClose:(AdKleinSDKInterstitialAd *)interstitialAd {
     NSString *func = [NSString stringWithFormat:@"%s",__func__];
     [self showString:func];
 }

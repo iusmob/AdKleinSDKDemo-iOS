@@ -10,7 +10,7 @@
 
 @interface SplashAdVC ()<AdKleinSDKSplashAdDelegate>
 
-@property (nonatomic, strong) AdKleinSDKSplashAd *splashAd;
+@property (nonatomic, strong) AdKleinSDKSplashAd *adLoader;
 
 @property (nonatomic,strong) UIImageView * bottomView;
 
@@ -60,10 +60,10 @@
 }
 
 - (void)loadClick {
-    if (!self.splashAd) {
+    if (!self.adLoader) {
         UIWindow *window = [[UIApplication sharedApplication] keyWindow];
-        self.splashAd = [[AdKleinSDKSplashAd alloc] initWithPlacementId:CONST_SPLASH_ID window:window];
-        self.splashAd.delegate = self;
+        self.adLoader = [[AdKleinSDKSplashAd alloc] initWithPlacementId:CONST_SPLASH_ID window:window];
+        self.adLoader.delegate = self;
 
 
         if (self.isSkip) {
@@ -75,7 +75,7 @@
             [_skipView.layer setCornerRadius:15.0];
             _skipView.titleLabel.font = [UIFont systemFontOfSize: 14.0];
             _skipView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.7f];
-            self.splashAd.skipView = self.skipView;
+            self.adLoader.skipView = self.skipView;
         }
 
         if (self.isBottom) {
@@ -83,31 +83,23 @@
             _bottomView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width,[UIScreen mainScreen].bounds.size.height*0.25)];
             _bottomView.image = [UIImage imageNamed:@"bottom"];
             _bottomView.contentMode = UIViewContentModeScaleAspectFill;
-            self.splashAd.bottomView = _bottomView;
+            self.adLoader.bottomView = _bottomView;
         }
     }
-    [self.splashAd load];
+    [self.adLoader load];
 }
 
 
 - (void)skipViewClick {
-    [self.splashAd removeSplashAd];
+    [self.adLoader removeSplashAd];
 }
 
-- (void)ak_splashAdDidSkip:(AdKleinSDKSplashAd *)splashAd {
-    NSString *func = [NSString stringWithFormat:@"%s",__func__];
-    [self showString:func];
-}
-- (void)ak_splashAdTimeOver:(AdKleinSDKSplashAd *)splashAd {
+- (void)ak_splashAdDidLoad:(AdKleinSDKSplashAd *)splashAd {
     NSString *func = [NSString stringWithFormat:@"%s",__func__];
     [self showString:func];
 }
 - (void)ak_splashAdDidFail:(AdKleinSDKSplashAd *)splashAd withError:(NSError *)error {
     [self showError:error];
-}
-- (void)ak_splashAdDidLoad:(AdKleinSDKSplashAd *)splashAd {
-    NSString *func = [NSString stringWithFormat:@"%s",__func__];
-    [self showString:func];
 }
 - (void)ak_splashAdDidShow:(AdKleinSDKSplashAd *)splashAd {
     NSString *func = [NSString stringWithFormat:@"%s",__func__];
@@ -118,6 +110,14 @@
     [self showString:func];
 }
 - (void)ak_splashAdDidClose:(AdKleinSDKSplashAd *)splashAd {
+    NSString *func = [NSString stringWithFormat:@"%s",__func__];
+    [self showString:func];
+}
+- (void)ak_splashAdDidSkip:(AdKleinSDKSplashAd *)splashAd {
+    NSString *func = [NSString stringWithFormat:@"%s",__func__];
+    [self showString:func];
+}
+- (void)ak_splashAdTimeOver:(AdKleinSDKSplashAd *)splashAd {
     NSString *func = [NSString stringWithFormat:@"%s",__func__];
     [self showString:func];
 }

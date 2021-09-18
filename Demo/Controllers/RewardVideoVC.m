@@ -9,7 +9,7 @@
 #import "RewardVideoVC.h"
 
 @interface RewardVideoVC () <AdKleinSDKRewardVideoAdDelegate>
-@property (nonatomic, strong) AdKleinSDKRewardVideoAd *adView;
+@property (nonatomic, strong) AdKleinSDKRewardVideoAd *adLoader;
 
 
 @end
@@ -22,19 +22,45 @@
 }
 
 - (void)loadClick {
-    if (self.adView) {
-        self.adView.delegate = nil;
-        self.adView = nil;
+    if (self.adLoader) {
+        self.adLoader.delegate = nil;
+        self.adLoader = nil;
     }
-    self.adView = [[AdKleinSDKRewardVideoAd alloc] initWithPlacementId:CONST_REWARD_VIDEO_ID viewController:self];
-    self.adView.delegate = self;
-    [self.adView load];
+    self.adLoader = [[AdKleinSDKRewardVideoAd alloc] initWithPlacementId:CONST_REWARD_VIDEO_ID viewController:self];
+    self.adLoader.delegate = self;
+    [self.adLoader load];
 }
 
 - (void)showClick {
-    [self.adView show];
+    [self.adLoader show];
 }
 
+
+- (void)ak_rewardVideoAdDidLoad:(AdKleinSDKRewardVideoAd *)rewardVideoAd {
+    NSString *func = [NSString stringWithFormat:@"%s",__func__];
+    [self showString:func];
+}
+- (void)ak_rewardVideoAdDidFail:(AdKleinSDKRewardVideoAd *)rewardVideoAd withError:(NSError *)error {
+    [self showError:error];
+}
+- (void)ak_rewardVideoAdDidDownload:(AdKleinSDKRewardVideoAd *)rewardVideoAd {
+    NSString *func = [NSString stringWithFormat:@"%s",__func__];
+    [self showString:func];
+    [self.adLoader show];
+}
+- (void)ak_rewardVideoAdDidRenderFail:(AdKleinSDKRewardVideoAd *)rewardVideoAd withError:(NSError *)error {
+    [self showError:error];
+}
+
+- (void)ak_rewardVideoAdDidShow:(AdKleinSDKRewardVideoAd *)rewardVideoAd {
+    NSString *func = [NSString stringWithFormat:@"%s",__func__];
+    [self showString:func];
+}
+
+- (void)ak_rewardVideoAdDidClick:(AdKleinSDKRewardVideoAd *)rewardVideoAd {
+    NSString *func = [NSString stringWithFormat:@"%s",__func__];
+    [self showString:func];
+}
 - (void)ak_rewardVideoAdDidClose:(AdKleinSDKRewardVideoAd *)rewardVideoAd {
     NSString *func = [NSString stringWithFormat:@"%s",__func__];
     [self showString:func];
@@ -54,35 +80,5 @@
     NSString *func = [NSString stringWithFormat:@"%s",__func__];
     [self showString:func];
 }
-
-- (void)ak_rewardVideoAdDidFail:(AdKleinSDKRewardVideoAd *)rewardVideoAd withError:(NSError *)error {
-    [self showError:error];
-}
-
-- (void)ak_rewardVideoAdDidRenderFail:(AdKleinSDKRewardVideoAd *)rewardVideoAd withError:(NSError *)error {
-    [self showError:error];
-}
-
-- (void)ak_rewardVideoAdDidLoad:(AdKleinSDKRewardVideoAd *)rewardVideoAd {
-    NSString *func = [NSString stringWithFormat:@"%s",__func__];
-    [self showString:func];
-}
-
-- (void)ak_rewardVideoAdDidDownload:(AdKleinSDKRewardVideoAd *)rewardVideoAd {
-    NSString *func = [NSString stringWithFormat:@"%s",__func__];
-    [self showString:func];
-    [self.adView show];
-}
-
-- (void)ak_rewardVideoAdDidShow:(AdKleinSDKRewardVideoAd *)rewardVideoAd {
-    NSString *func = [NSString stringWithFormat:@"%s",__func__];
-    [self showString:func];
-}
-
-- (void)ak_rewardVideoAdDidClick:(AdKleinSDKRewardVideoAd *)rewardVideoAd {
-    NSString *func = [NSString stringWithFormat:@"%s",__func__];
-    [self showString:func];
-}
-
 
 @end

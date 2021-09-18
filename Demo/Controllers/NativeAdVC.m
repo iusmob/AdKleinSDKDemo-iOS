@@ -51,7 +51,7 @@
 }
 
 - (void)removeClick {
-    for (id adView in self.adViews) {
+    for (id adView in self.adViews.mutableCopy) {
         if([adView conformsToProtocol:@protocol(AdKleinSDKNativeAdViewDelegate)]) {
             // 取消注册
             [(id<AdKleinSDKNativeAdViewDelegate>)adView ak_unRegistView];
