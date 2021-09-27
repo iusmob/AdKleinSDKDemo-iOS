@@ -89,14 +89,14 @@
 			 NSLog(@"SDK 初始化成功");
 		 }
 	 }];
-    [self loadSplashAd];
+	[self loadSplashAd];
 }
 
 - (void)loadSplashAd {
-    if (!self.splashAd) {
-        self.splashAd = [[AdKleinSDKSplashAd alloc] initWithPlacementId:CONST_SPLASH_ID window:self.window];
-        self.splashAd.delegate = self;
-    }
+	if (!self.splashAd) {
+		self.splashAd = [[AdKleinSDKSplashAd alloc] initWithPlacementId:CONST_SPLASH_ID window:self.window];
+		self.splashAd.delegate = self;
+	}
 	[self.splashAd load];
 }
 
