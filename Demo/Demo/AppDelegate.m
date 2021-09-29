@@ -66,7 +66,9 @@
 								 [self initAdKleinSDK];
 							 });
 				  }];
-			 }
+			 } else {
+                 [self initAdKleinSDK];
+             }
 		 } else {
 //            UIWindow *window = [UIApplication sharedApplication].keyWindow;
 			 [UIView animateWithDuration:0.5f animations:^{

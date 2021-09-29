@@ -66,6 +66,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AdKleinSDKSplashAdDelegat
                             initAdKleinSDK()
                         })
                     })
+                } else {
+                    initAdKleinSDK()
                 }
             } else {
                 UIView.animate(withDuration: 0.5, animations: { [unowned self] in
