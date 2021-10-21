@@ -33,35 +33,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.slotIdTextField.text = CONST_SPLASH_ID;
 
     self.showBtn.hidden = YES;
 
-
-
-    self.customSkipSwitch = [[UISwitch alloc]initWithFrame:CGRectMake(150,self.loadBtn.frame.origin.y + 100,50,40)];
+    self.customSkipSwitch = [[UISwitch alloc]initWithFrame:CGRectMake(150,self.loadBtn.frame.origin.y + 60,50,40)];
     self.customSkipSwitch.on = NO;
     [self.customSkipSwitch addTarget:self action:@selector(customSkipSwitchClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.customSkipSwitch];
 
-    self.skipLabel = [[UILabel alloc]initWithFrame:CGRectMake(50,self.loadBtn.frame.origin.y + 100, 80, 40)];
+    self.skipLabel = [[UILabel alloc]initWithFrame:CGRectMake(50,self.loadBtn.frame.origin.y + 60, 80, 40)];
     self.skipLabel.text = @"跳过按钮";
     [self.view addSubview:self.skipLabel];
 
 
 
-    self.customBottomSwitch = [[UISwitch alloc]initWithFrame:CGRectMake(150, self.loadBtn.frame.origin.y+200,50, 40)];
+    self.customBottomSwitch = [[UISwitch alloc]initWithFrame:CGRectMake(150, self.loadBtn.frame.origin.y+120,50, 40)];
     self.customBottomSwitch.on = NO;
     [self.customBottomSwitch addTarget:self action:@selector(customBottomSwitchClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.customBottomSwitch];
 
-    self.bottomLabel = [[UILabel alloc]initWithFrame:CGRectMake(50,self.loadBtn.frame.origin.y + 200, 80, 40)];
+    self.bottomLabel = [[UILabel alloc]initWithFrame:CGRectMake(50,self.loadBtn.frame.origin.y + 120, 80, 40)];
     self.bottomLabel.text = @"底部View";
     [self.view addSubview:self.bottomLabel];
 }
 
 - (void)loadClick {
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
-    self.adLoader = [[AdKleinSDKSplashAd alloc] initWithPlacementId:CONST_SPLASH_ID window:window];
+    self.adLoader = [[AdKleinSDKSplashAd alloc] initWithPlacementId:self.slotIdTextField.text window:window];
     self.adLoader.delegate = self;
 
 

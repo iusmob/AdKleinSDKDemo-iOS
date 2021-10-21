@@ -19,6 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.slotIdTextField.text = CONST_REWARD_VIDEO_ID;
 }
 
 - (void)loadClick {
@@ -26,7 +27,7 @@
         self.adLoader.delegate = nil;
         self.adLoader = nil;
     }
-    self.adLoader = [[AdKleinSDKRewardVideoAd alloc] initWithPlacementId:CONST_REWARD_VIDEO_ID viewController:self];
+    self.adLoader = [[AdKleinSDKRewardVideoAd alloc] initWithPlacementId:self.slotIdTextField.text viewController:self];
     self.adLoader.delegate = self;
     [self.adLoader load];
 }

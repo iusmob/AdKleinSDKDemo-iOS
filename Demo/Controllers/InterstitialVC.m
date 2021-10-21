@@ -20,6 +20,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.slotIdTextField.text = CONST_INTERSTITIAL_ID;
+    
     self.showBtn.hidden = YES;
 }
 
@@ -29,7 +31,7 @@
         self.adLoader.delegate = nil;
         self.adLoader = nil;
     }
-    self.adLoader = [[AdKleinSDKInterstitialAd alloc] initWithPlacementId:CONST_INTERSTITIAL_ID viewController:self];
+    self.adLoader = [[AdKleinSDKInterstitialAd alloc] initWithPlacementId:self.slotIdTextField.text viewController:self];
     self.adLoader.delegate = self;
     self.adLoader.adSize = CGSizeMake(300, 400);
     [self.adLoader load];

@@ -13,10 +13,12 @@ class FullScreenVideoAdVC: BaseViewController, AdKleinSDKFullScreenVideoAdDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        slotIdTextField.text = Constant.FULLSCREEN_ID;
     }
 
     override func loadClick() {
-        adLoader = AdKleinSDKFullScreenVideoAd(placementId: Constant.FULLSCREEN_ID, viewController: self)
+        adLoader = AdKleinSDKFullScreenVideoAd(placementId: slotIdTextField.text!, viewController: self)
         adLoader?.delegate = self
         adLoader?.detailPageVideoMuted = true
         adLoader?.videoAutoPlayOnWWAN = true

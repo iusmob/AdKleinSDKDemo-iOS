@@ -16,12 +16,18 @@ class NativeAdVC: BaseViewController, AdKleinSDKNativeAdDelegate {
     var adViews: [UIView] = []
     var removeBtn: UIButton?
     
+    override func onChangeSlotId(_ notification: Notification?) {
+        removeClick()
+        adLoader = nil
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        slotIdTextField.text = Constant.NATIVE_ID;
         
         showBtn.isHidden = true;
         
-        removeBtn = UIButton(frame: CGRect(x: 50, y: 300, width: Constant.ScreenWidth - 100, height: 50))
+        removeBtn = UIButton(frame: CGRect(x: 20, y: 320, width: Constant.ScreenWidth - 40, height: 40))
         removeBtn?.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.3)
         removeBtn?.setTitle("remove", for: .normal)
         removeBtn?.addTarget(self, action: #selector(self.removeClick), for: .touchUpInside)
@@ -37,7 +43,7 @@ class NativeAdVC: BaseViewController, AdKleinSDKNativeAdDelegate {
 
     override func loadClick() {
         if (adLoader == nil) {
-            adLoader = AdKleinSDKNativeAd(placementId: Constant.NATIVE_ID, viewController: self)
+            adLoader = AdKleinSDKNativeAd(placementId: slotIdTextField.text!, viewController: self)
             adLoader?.delegate = self
             adLoader?.adCount = 3
         }

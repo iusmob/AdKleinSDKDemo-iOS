@@ -20,12 +20,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.slotIdTextField.text = CONST_BANNER_ID;
 
     self.showBtn.hidden = YES;
 
     CGFloat screen_width = [UIScreen mainScreen].bounds.size.width;
 
-    self.removeBtn = [[UIButton alloc] initWithFrame:CGRectMake(50, 300, screen_width - 100, 50)];
+    self.removeBtn = [[UIButton alloc] initWithFrame:CGRectMake(20, 320, screen_width - 40, 40)];
     [self.removeBtn setTitle:@"remove" forState:UIControlStateNormal];
     [self.removeBtn addTarget:self action:@selector(removeClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.removeBtn];
@@ -38,7 +39,7 @@
         self.adView.delegate = nil;
         self.adView = nil;
     }
-    self.adView = [[AdKleinSDKBannerAdView alloc] initWithPlacementId:CONST_BANNER_ID viewController:self];
+    self.adView = [[AdKleinSDKBannerAdView alloc] initWithPlacementId:self.slotIdTextField.text viewController:self];
     self.adView.delegate = self;
     CGFloat screen_width = [UIScreen mainScreen].bounds.size.width;
     self.adView.frame = CGRectMake(0, 400, screen_width, screen_width / 2);

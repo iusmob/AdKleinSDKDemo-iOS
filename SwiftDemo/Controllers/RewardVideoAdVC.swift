@@ -13,10 +13,12 @@ class RewardVideoAdVC: BaseViewController, AdKleinSDKRewardVideoAdDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        slotIdTextField.text = Constant.REWARD_VIDEO_ID;
     }
 
     override func loadClick() {
-        adLoader = AdKleinSDKRewardVideoAd(placementId: Constant.REWARD_VIDEO_ID, viewController: self)
+        adLoader = AdKleinSDKRewardVideoAd(placementId: slotIdTextField.text!, viewController: self)
         adLoader?.delegate = self
         adLoader?.load()
     }

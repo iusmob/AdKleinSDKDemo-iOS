@@ -13,12 +13,13 @@ class InterstitialAdVC: BaseViewController, AdKleinSDKInterstitialAdDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        slotIdTextField.text = Constant.INTERSTITIAL_ID;
         
         showBtn.isHidden = true;
     }
 
     override func loadClick() {
-        adLoader = AdKleinSDKInterstitialAd(placementId: Constant.INTERSTITIAL_ID, viewController: self)
+        adLoader = AdKleinSDKInterstitialAd(placementId: slotIdTextField.text!, viewController: self)
         adLoader?.delegate = self
         adLoader?.adSize = CGSize(width: 300, height: 400)
         adLoader?.load()

@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic)  UILabel *tipsLabel;
 @property (strong, nonatomic)  UIButton *loadBtn;
 @property (strong, nonatomic)  UIButton *showBtn;
-
+@property (strong, nonatomic)  UITextField *slotIdTextField;
 
 - (void)showString:(NSString *)message;
 

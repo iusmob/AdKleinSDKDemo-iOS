@@ -20,14 +20,21 @@
 
 @implementation NativeAdVC
 
+- (void)onChangeSlotId:(NSNotification *)notification
+{
+    [self removeClick];
+    self.adLoader = nil;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.slotIdTextField.text = CONST_NATIVE_ID;
 
     self.showBtn.hidden = YES;
     
     CGFloat screen_width = [UIScreen mainScreen].bounds.size.width;
-    self.removeBtn = [[UIButton alloc] initWithFrame:CGRectMake(50, 300, screen_width - 100, 50)];
+    self.removeBtn = [[UIButton alloc] initWithFrame:CGRectMake(20, 320, screen_width - 40, 40)];
     [self.removeBtn setTitle:@"remove" forState:UIControlStateNormal];
     [self.removeBtn addTarget:self action:@selector(removeClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.removeBtn];
@@ -43,7 +50,7 @@
 
 - (void)loadClick {
     if(!self.adLoader) {
-        self.adLoader = [[AdKleinSDKNativeAd alloc] initWithPlacementId:CONST_NATIVE_ID viewController:self];
+        self.adLoader = [[AdKleinSDKNativeAd alloc] initWithPlacementId:self.slotIdTextField.text viewController:self];
         self.adLoader.delegate = self;
         self.adLoader.adCount = 3;
     }

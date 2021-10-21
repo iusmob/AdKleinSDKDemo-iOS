@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
+    self.slotIdTextField.text = CONST_FULLSCREEN_ID;
 }
 
 
@@ -29,7 +29,7 @@
         self.adLoader.delegate = nil;
         self.adLoader = nil;
     }
-    self.adLoader = [[AdKleinSDKFullScreenVideoAd alloc] initWithPlacementId:CONST_FULLSCREEN_ID viewController:self];
+    self.adLoader = [[AdKleinSDKFullScreenVideoAd alloc] initWithPlacementId:self.slotIdTextField.text viewController:self];
     self.adLoader.delegate = self;
     self.adLoader.detailPageVideoMuted = YES;
     self.adLoader.videoAutoPlayOnWWAN = YES;

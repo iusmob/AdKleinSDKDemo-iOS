@@ -11,7 +11,6 @@
 @interface NativeExpressAdVC () <AdKleinSDKNativeExpressAdDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property(nonatomic, strong) AdKleinSDKNativeExpressAd *adLoader;
-@property(nonatomic, strong) UIView *showAdView;
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) UITableView *tableView;
@@ -21,10 +20,18 @@
 
 @implementation NativeExpressAdVC
 
+- (void)onChangeSlotId:(NSNotification *)notification
+{
+    self.dataArray = [NSMutableArray new];
+    [self.tableView reloadData];
+    self.adLoader = nil;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
+    self.slotIdTextField.text = CONST_NATIVE_EXPRESS_ID;
+    
     self.dataArray = [NSMutableArray new];
 
     self.showBtn.hidden = YES;
@@ -42,7 +49,7 @@
     if (!self.adLoader) {
         self.adSize = CGSizeMake(self.view.frame.size.width, 0);
 
-        self.adLoader = [[AdKleinSDKNativeExpressAd alloc] initWithPlacementId:CONST_NATIVE_EXPRESS_ID viewController:self];
+        self.adLoader = [[AdKleinSDKNativeExpressAd alloc] initWithPlacementId:self.slotIdTextField.text viewController:self];
         self.adLoader.delegate = self;
         self.adLoader.adSize = self.adSize;
         self.adLoader.videoMuted = NO;

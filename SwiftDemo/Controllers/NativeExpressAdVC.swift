@@ -14,8 +14,15 @@ class NativeExpressAdVC: BaseViewController, AdKleinSDKNativeExpressAdDelegate, 
     var tableView: UITableView?
     var adSize = CGSize.zero
     
+    override func onChangeSlotId(_ notification: Notification?) {
+        dataArray = Array<Any>.init()
+        tableView?.reloadData()
+        adLoader = nil
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        slotIdTextField.text = Constant.NATIVE_EXPRESS_ID;
         
         showBtn.isHidden = true;
         
@@ -33,7 +40,7 @@ class NativeExpressAdVC: BaseViewController, AdKleinSDKNativeExpressAdDelegate, 
         if (adLoader == nil) {
             adSize = CGSize(width: view.frame.size.width, height: 0)
 
-            adLoader = AdKleinSDKNativeExpressAd(placementId: Constant.NATIVE_EXPRESS_ID, viewController: self)
+            adLoader = AdKleinSDKNativeExpressAd(placementId: slotIdTextField.text!, viewController: self)
             adLoader?.delegate = self
             adLoader?.adSize = adSize
             adLoader?.videoMuted = false

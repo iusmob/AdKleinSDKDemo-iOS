@@ -22,28 +22,29 @@ class SplashAdVC: BaseViewController, AdKleinSDKSplashAdDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        slotIdTextField.text = Constant.SPLASH_ID;
         
         showBtn.isHidden = true;
         
-        customSkipSwitch = UISwitch(frame: CGRect(x: 150, y: loadBtn.frame.origin.y + 100, width: 50, height: 40))
+        customSkipSwitch = UISwitch(frame: CGRect(x: 150, y: loadBtn.frame.origin.y + 60, width: 50, height: 40))
         customSkipSwitch?.isOn = false
         customSkipSwitch?.addTarget(self, action: #selector(self.customSkipSwitchClick(_:)), for: .touchUpInside)
         view.addSubview(customSkipSwitch!)
-        skipLabel = UILabel(frame: CGRect(x: 50, y: loadBtn.frame.origin.y + 100, width: 80, height: 40))
+        skipLabel = UILabel(frame: CGRect(x: 50, y: loadBtn.frame.origin.y + 60, width: 80, height: 40))
         skipLabel?.text = "跳过按钮"
         view.addSubview(skipLabel!)
         
-        customBottomSwitch = UISwitch(frame: CGRect(x: 150, y: loadBtn.frame.origin.y + 200, width: 50, height: 40))
+        customBottomSwitch = UISwitch(frame: CGRect(x: 150, y: loadBtn.frame.origin.y + 120, width: 50, height: 40))
         customBottomSwitch?.isOn = false
         customBottomSwitch?.addTarget(self, action: #selector(self.customBottomSwitchClick(_:)), for: .touchUpInside)
         view.addSubview(customBottomSwitch!)
-        bottomLabel = UILabel(frame: CGRect(x: 50, y: loadBtn.frame.origin.y + 200, width: 80, height: 40))
+        bottomLabel = UILabel(frame: CGRect(x: 50, y: loadBtn.frame.origin.y + 120, width: 80, height: 40))
         bottomLabel?.text = "底部View"
         view.addSubview(bottomLabel!)
     }
 
     override func loadClick() {
-        adLoader = AdKleinSDKSplashAd(placementId: Constant.SPLASH_ID, window: UIApplication.shared.keyWindow!)
+        adLoader = AdKleinSDKSplashAd(placementId: slotIdTextField.text!, window: UIApplication.shared.keyWindow!)
         adLoader?.delegate = self
         
         if isSkip {

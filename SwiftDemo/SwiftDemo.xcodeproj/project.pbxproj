@@ -24,7 +24,7 @@
 		48B9B67426F36EF1008956D3 /* RewardVideoAdVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B9B67326F36EF1008956D3 /* RewardVideoAdVC.swift */; };
 		48B9B67626F37080008956D3 /* FullScreenVideoAdVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B9B67526F37080008956D3 /* FullScreenVideoAdVC.swift */; };
 		48B9B67826F444EA008956D3 /* PrivacyAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B9B67726F444EA008956D3 /* PrivacyAlert.swift */; };
-		5FFE6DB8C2EDC456E11944B5 /* Pods_SwiftDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE517DD5B36D167D6019D437 /* Pods_SwiftDemo.framework */; };
+		5B9E0FD8BC05F69A76A26AF8 /* libPods-SwiftDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DD23204197072D3A4A56E11 /* libPods-SwiftDemo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,8 +49,8 @@
 		48B9B67526F37080008956D3 /* FullScreenVideoAdVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenVideoAdVC.swift; sourceTree = "<group>"; };
 		48B9B67726F444EA008956D3 /* PrivacyAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyAlert.swift; sourceTree = "<group>"; };
 		49CA0D934B52591F18DD5E84 /* Pods-SwiftDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftDemo.release.xcconfig"; path = "Target Support Files/Pods-SwiftDemo/Pods-SwiftDemo.release.xcconfig"; sourceTree = "<group>"; };
+		7DD23204197072D3A4A56E11 /* libPods-SwiftDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SwiftDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF5306E15A3DCA46A0FF0B03 /* Pods-SwiftDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftDemo.debug.xcconfig"; path = "Target Support Files/Pods-SwiftDemo/Pods-SwiftDemo.debug.xcconfig"; sourceTree = "<group>"; };
-		BE517DD5B36D167D6019D437 /* Pods_SwiftDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +59,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0DF37568253452D900E0A786 /* AdKleinSDK.framework in Frameworks */,
-				5FFE6DB8C2EDC456E11944B5 /* Pods_SwiftDemo.framework in Frameworks */,
+				5B9E0FD8BC05F69A76A26AF8 /* libPods-SwiftDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,7 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				0DF37567253452D900E0A786 /* AdKleinSDK.framework */,
-				BE517DD5B36D167D6019D437 /* Pods_SwiftDemo.framework */,
+				7DD23204197072D3A4A56E11 /* libPods-SwiftDemo.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -445,9 +445,10 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = V38GCPTSFC;
+				DEVELOPMENT_TEAM = 9XG8RQG5TJ;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = SwiftDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -456,8 +457,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.iusmob.adklein.swiftdemo;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.iusmob.adklein.swift-demo";
 				PRODUCT_NAME = AdKleinSDKSwiftDemo;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -469,9 +471,10 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = V38GCPTSFC;
+				DEVELOPMENT_TEAM = 9XG8RQG5TJ;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = SwiftDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -480,8 +483,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.iusmob.adklein.swiftdemo;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.iusmob.adklein.swift-demo";
 				PRODUCT_NAME = AdKleinSDKSwiftDemo;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
