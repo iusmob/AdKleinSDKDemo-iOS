@@ -1,4 +1,4 @@
-# AdKleinSDK iOS SDK——接入文档
+# AdKleinSDK iOS 接入文档
 
 ## 概述
 
@@ -81,6 +81,8 @@ pod 'AdKleinSDK/AdKleinSDKPlatforms/Mobius'     # 莫比乌斯(推荐)
 #pod 'AdKleinSDK/AdKleinSDKPlatforms/Smaato'    # Smaato(可选)
 ```
 
+**注意：** 如果曾接入过旧版本，请执行`pod update AdKleinSDK`更新版本，或者删除`Podfile.lock`文件并执行`pod install --repo-update`安装最新版本。
+
 **注意：** 接入Google的Admob广告请务必参考5.1.1在Info.plist中添加`GADApplicationIdentifier`信息。
 
 ### 手动导入
@@ -134,116 +136,116 @@ libbz2.tbd
 ```xml
 <key>LSApplicationQueriesSchemes</key>
 <array>
-<!-- 电商 -->
-<string>taobao</string><!-- 淘宝  -->
-<string>tmall</string><!-- 天猫  -->
-<string>jdlogin</string><!-- 京东  -->
-<string>pinduoduo</string> <!-- 拼多多  -->
-<string>kaola</string> <!-- 网易考拉  -->
-<string>yanxuan</string> <!-- 网易严选  -->
-<string>vipshop</string> <!-- 唯品会  -->
-<string>suning</string> <!-- 苏宁  -->
-<string>mishopv1</string> <!-- 小米商城 -->
-<string>wireless1688</string> <!-- 阿里巴巴 -->
+  <!-- 电商 -->
+  <string>taobao</string><!-- 淘宝  -->
+  <string>tmall</string><!-- 天猫  -->
+  <string>jdlogin</string><!-- 京东  -->
+  <string>pinduoduo</string> <!-- 拼多多  -->
+  <string>kaola</string> <!-- 网易考拉  -->
+  <string>yanxuan</string> <!-- 网易严选  -->
+  <string>vipshop</string> <!-- 唯品会  -->
+  <string>suning</string> <!-- 苏宁  -->
+  <string>mishopv1</string> <!-- 小米商城 -->
+  <string>wireless1688</string> <!-- 阿里巴巴 -->
 
-<!-- 社交、社区-->
-<string>weibo</string><!-- 微博 -->
-<string>zhihu</string><!-- 知乎 -->
-<string>xhsdiscover</string><!-- 小红书 -->
-<string>momochat</string><!-- 陌陌 -->
-<string>blued</string><!-- blued -->
-<string>mqzone</string><!-- QQ空间 -->
-<string>mqq</string><!-- QQ -->
-<string>tantanapp</string><!-- 探探 -->
-<string>huputiyu</string><!-- 虎扑 -->
-<string>com.baidu.tieba</string> <!-- 贴吧  -->
-<string>tianya</string> <!-- 天涯社区  -->
-<string>douban</string> <!-- 豆瓣 -->
-<string>jike</string> <!-- 即刻 -->
+  <!-- 社交、社区-->
+  <string>weibo</string><!-- 微博 -->
+  <string>zhihu</string><!-- 知乎 -->
+  <string>xhsdiscover</string><!-- 小红书 -->
+  <string>momochat</string><!-- 陌陌 -->
+  <string>blued</string><!-- blued -->
+  <string>mqzone</string><!-- QQ空间 -->
+  <string>mqq</string><!-- QQ -->
+  <string>tantanapp</string><!-- 探探 -->
+  <string>huputiyu</string><!-- 虎扑 -->
+  <string>com.baidu.tieba</string> <!-- 贴吧  -->
+  <string>tianya</string> <!-- 天涯社区  -->
+  <string>douban</string> <!-- 豆瓣 -->
+  <string>jike</string> <!-- 即刻 -->
 
-<!-- 短视频 -->
-<string>snssdk1128</string> <!-- 抖音 -->
-<string>snssdk1112</string> <!-- 火山 -->
-<string>snssdk32</string> <!-- 西瓜视频 -->
-<string>gifshow</string> <!-- 快手 -->
+  <!-- 短视频 -->
+  <string>snssdk1128</string> <!-- 抖音 -->
+  <string>snssdk1112</string> <!-- 火山 -->
+  <string>snssdk32</string> <!-- 西瓜视频 -->
+  <string>gifshow</string> <!-- 快手 -->
 
-<!-- 视频/直播 -->
-<string>tenvideo</string> <!-- 腾讯视频  -->
-<string>youku</string> <!-- 优酷  -->
-<string>bilibili</string> <!-- B站  -->
-<string>imgotv</string> <!-- 芒果TV  -->
-<string>qiyi-iphone</string> <!-- 爱奇艺  -->
-<string>hanju</string> <!-- 韩剧TV  -->
-<string>douyutv</string> <!-- 斗鱼  -->
-<string>yykiwi</string> <!-- 虎牙  -->
+  <!-- 视频/直播 -->
+  <string>tenvideo</string> <!-- 腾讯视频  -->
+  <string>youku</string> <!-- 优酷  -->
+  <string>bilibili</string> <!-- B站  -->
+  <string>imgotv</string> <!-- 芒果TV  -->
+  <string>qiyi-iphone</string> <!-- 爱奇艺  -->
+  <string>hanju</string> <!-- 韩剧TV  -->
+  <string>douyutv</string> <!-- 斗鱼  -->
+  <string>yykiwi</string> <!-- 虎牙  -->
 
-<!-- 图片处理  -->
-<string>mtxx.open</string> <!-- 美图秀秀  -->
-<string>faceu</string> <!-- faceu国内  -->
-<string>ulike</string> <!-- 轻颜国内 -->
+  <!-- 图片处理  -->
+  <string>mtxx.open</string> <!-- 美图秀秀  -->
+  <string>faceu</string> <!-- faceu国内  -->
+  <string>ulike</string> <!-- 轻颜国内 -->
 
-<!-- 资讯 -->
-<string>snssdk141</string> <!-- 今日头条  -->
-<string>newsapp</string> <!-- 网易新闻  -->
-<string>qqnews</string> <!-- 腾讯新闻  -->
-<string>iting</string> <!-- 喜马拉雅 -->
-<string>weread</string> <!-- 微信读书 -->
-<string>jianshu</string> <!-- 简书 -->
-<string>igetApp</string> <!-- 得到 -->
-<string>kuaikan</string> <!-- 快看漫画 -->
+  <!-- 资讯 -->
+  <string>snssdk141</string> <!-- 今日头条  -->
+  <string>newsapp</string> <!-- 网易新闻  -->
+  <string>qqnews</string> <!-- 腾讯新闻  -->
+  <string>iting</string> <!-- 喜马拉雅 -->
+  <string>weread</string> <!-- 微信读书 -->
+  <string>jianshu</string> <!-- 简书 -->
+  <string>igetApp</string> <!-- 得到 -->
+  <string>kuaikan</string> <!-- 快看漫画 -->
 
-<!-- 财经 -->
-<string>sinanews</string> <!-- 新浪财经  -->
-<string>amihexin</string> <!-- 同花顺炒股 -->
+  <!-- 财经 -->
+  <string>sinanews</string> <!-- 新浪财经  -->
+  <string>amihexin</string> <!-- 同花顺炒股 -->
 
-<!-- 音乐 -->
-<string>orpheus</string> <!-- 网易云音乐  -->
-<string>qqmusic</string> <!-- qq音乐  -->
-<string>kugouURL</string> <!-- 酷狗  -->
-<string>qmkege</string> <!-- 全民K歌 -->
-<string>changba</string> <!-- 唱吧  -->
+  <!-- 音乐 -->
+  <string>orpheus</string> <!-- 网易云音乐  -->
+  <string>qqmusic</string> <!-- qq音乐  -->
+  <string>kugouURL</string> <!-- 酷狗  -->
+  <string>qmkege</string> <!-- 全民K歌 -->
+  <string>changba</string> <!-- 唱吧  -->
 
-<!-- 工具 -->
-<string>iosamap</string> <!-- 高德地图  -->
-<string>baidumap</string> <!-- 百度地图   -->
-<string>baiduyun</string> <!-- 百度网盘  -->
-<string>rm434209233MojiWeather</string> <!-- 墨迹天气  -->
+  <!-- 工具 -->
+  <string>iosamap</string> <!-- 高德地图  -->
+  <string>baidumap</string> <!-- 百度地图   -->
+  <string>baiduyun</string> <!-- 百度网盘  -->
+  <string>rm434209233MojiWeather</string> <!-- 墨迹天气  -->
 
-<!-- 办公 -->
-<string>wxwork</string> <!-- 企业微信  -->
-<string>dingtalk</string> <!-- 钉钉 -->
-
-
-<!-- 生活 -->
-<string>imeituan</string> <!-- 美团  -->
-<string>dianping</string> <!-- 点评  -->
-<string>cainiao</string> <!-- 菜鸟裹裹  -->
-<string>wbmain</string> <!--  58同城 -->
-<string>mihome</string> <!--  米家 -->
-
-<!-- 美食佳饮  -->
-<string>xcfapp</string> <!-- 下厨房  -->
-<string>sbuxcn</string> <!-- 星巴克中国  -->
-<string>meituanwaimai</string> <!-- 美团外卖  -->
-
-<!-- 运动健康  -->
-<string>fb370547106731052</string> <!-- 小米运动  -->
-<string>meetyou.linggan</string> <!-- 美柚  -->
-<string>babytree</string> <!-- 宝宝树  -->
-<string>keep</string> <!-- keep  -->
-
-<!-- 旅行  -->
-<string>CtripWireless</string> <!-- 携程  -->
-<string>diditaxi</string> <!-- 滴滴  -->
-<string>taobaotravel</string> <!-- 飞猪  -->
-<string>travelguide</string> <!-- 马蜂窝  -->
+  <!-- 办公 -->
+  <string>wxwork</string> <!-- 企业微信  -->
+  <string>dingtalk</string> <!-- 钉钉 -->
 
 
+  <!-- 生活 -->
+  <string>imeituan</string> <!-- 美团  -->
+  <string>dianping</string> <!-- 点评  -->
+  <string>cainiao</string> <!-- 菜鸟裹裹  -->
+  <string>wbmain</string> <!--  58同城 -->
+  <string>mihome</string> <!--  米家 -->
 
-<!-- 游戏 -->
-<string>tencent1104466820</string> <!-- 王者荣耀  -->
-<string>tencent100689805</string> <!-- 天天爱消除  -->
-<string>tencent382</string> <!-- QQ斗地主  -->
+  <!-- 美食佳饮  -->
+  <string>xcfapp</string> <!-- 下厨房  -->
+  <string>sbuxcn</string> <!-- 星巴克中国  -->
+  <string>meituanwaimai</string> <!-- 美团外卖  -->
+
+  <!-- 运动健康  -->
+  <string>fb370547106731052</string> <!-- 小米运动  -->
+  <string>meetyou.linggan</string> <!-- 美柚  -->
+  <string>babytree</string> <!-- 宝宝树  -->
+  <string>keep</string> <!-- keep  -->
+
+  <!-- 旅行  -->
+  <string>CtripWireless</string> <!-- 携程  -->
+  <string>diditaxi</string> <!-- 滴滴  -->
+  <string>taobaotravel</string> <!-- 飞猪  -->
+  <string>travelguide</string> <!-- 马蜂窝  -->
+
+
+
+  <!-- 游戏 -->
+  <string>tencent1104466820</string> <!-- 王者荣耀  -->
+  <string>tencent100689805</string> <!-- 天天爱消除  -->
+  <string>tencent382</string> <!-- QQ斗地主  -->
 </array>
 ```
 
@@ -336,7 +338,7 @@ func requestIDFA {
 
 
 
-## 示例代码
+## SDK初始化
 
 ### 引入SDK模块
 
@@ -347,8 +349,6 @@ func requestIDFA {
 ```swift
 import AdKleinSDK
 ```
-
-### SDK初始化
 
 在 AppDelegate.m 中进行SDK的初始化
 
@@ -362,7 +362,7 @@ AdKleinSDKConfig.initMediaId(Constant.MEDIA_ID)
 
 **注意：**mediaId需要在运营平台上创建并获取。
 
-#### Admob的单独处理
+### Admob的单独处理
 
 接入Admob时，无法使用mediaId进行初始化来获取admob所需的`GADApplicationIdentifier`。
 
@@ -379,7 +379,7 @@ AdKleinSDKConfig.initMediaId(Constant.MEDIA_ID)
 
 
 
-#### 调试模式
+### 调试模式
 
 开启调试模式可以获得更详细的日志输出，用于定位问题。
 
@@ -397,7 +397,7 @@ AdKleinSDKConfig.initMediaId(Constant.MEDIA_ID)
 
 
 
-#### 获取版本号
+### 获取版本号
 
 ```objectivec
 //SDK版本号，如：3.0.0
@@ -415,7 +415,7 @@ let sdkVersionCode = AdKleinSDKConfig.sdkVersionCode()
 
 
 
-### <a name="ad_splash">开屏广告示例</a>
+## <a name="ad_splash">开屏广告示例</a>
 
 开屏广告建议在闪屏页进行展示，开屏广告的宽度和高度取决于容器的宽高，都是会撑满广告容器；**开屏广告的高度必须大于等于屏幕高度（手机屏幕完整高度，包括状态栏之类）的75%**，否则可能会影响收益计费（广点通的开屏甚至会影响跳过按钮的回调）。
 
@@ -539,7 +539,7 @@ adLoader?.load()
 
 **注意：**开屏广告在展示结束前需要用本地变量存储以避免提前释放导致异常。
 
-#### 自定义底部View
+### 自定义底部View
 
 ```objectivec
 _bottomView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width,[UIScreen mainScreen].bounds.size.height*0.25)];
@@ -556,7 +556,7 @@ adLoader?.bottomView = bottomView
 
 **注意：** 目前仅穿山甲、广点通、莫比乌斯支持该功能。
 
-#### 自定义跳过按钮
+### 自定义跳过按钮
 
 ```objectivec
 _skipView = [[UIButton alloc]initWithFrame:CGRectMake([[UIScreen mainScreen] bounds].size.width - 80, [[UIScreen mainScreen] bounds].size.height - 80, 60, 30)];
@@ -582,7 +582,7 @@ adLoader?.skipView = skipView
 
 **注意：** 目前仅穿山甲、莫比乌斯支持该功能。
 
-#### 开屏广告优化建议
+### 开屏广告优化建议
 
 可参考Demo中的实现。
 
@@ -593,7 +593,7 @@ adLoader?.skipView = skipView
 
 
 
-### <a name="ad_banner">横幅广告示例</a>
+## <a name="ad_banner">横幅广告示例</a>
 
 Banner横幅广告建议放置在 **固定位置**，而非TableView等控件中充当Cell，Banner广告支持多种尺寸比例，可在后台创建广告位时配置。
 
@@ -707,11 +707,11 @@ bannerAd?.load()
 
 
 
-### <a name="ad_native">信息流广告示例</a>
+## <a name="ad_native">信息流广告示例</a>
 
 信息流广告，具备自渲染和模板两种广告样式：自渲染是SDK将返回广告标题、描述、Icon、图片、多媒体视图等信息，开发者可通过自行拼装渲染成喜欢的样式；模板样式则是返回拼装好的广告视图，开发者只需将视图添加到相应容器即可，模板样式的容器高度建议是自适应。
 
-#### 自渲染
+### 自渲染
 
 1. 声明广告加载器：
 
@@ -1017,7 +1017,7 @@ adLoader?.load()
 
 
 
-#### 模版渲染
+### 模版渲染
 
 1. 声明广告加载器：
 
@@ -1206,7 +1206,7 @@ adLoader?.load()
 
 
 
-### <a name="ad_reward_video">激励视频广告示例</a>
+## <a name="ad_reward_video">激励视频广告示例</a>
 
 将短视频融入到APP场景当中，用户观看短视频广告后可以给予一些应用内奖励。
 
@@ -1378,7 +1378,7 @@ adLoader?.load()
 
 
 
-### <a name="ad_fullscreen_video">全屏视频广告示例</a>
+## <a name="ad_fullscreen_video">全屏视频广告示例</a>
 
 全屏视频广告是类似激励视频样式的广告形式，与激励视频不同之处在于全屏视频广告播放一定时间时间后即可跳过，同时全屏视频广告拥有跳过回调不具备奖励回调。
 
@@ -1518,7 +1518,7 @@ adLoader?.load()
 
 
 
-### <a name="ad_interstitial">插屏广告示例</a>
+## <a name="ad_interstitial">插屏广告示例</a>
 
 插屏广告是移动广告的一种常见形式，在应用流程中弹出，当应用展示插屏广告时，用户可以选择点击广告，也可以将其关闭并返回应用。
 
@@ -1734,6 +1734,10 @@ Banner横幅广告建议放置在 **固定位置**，而非TableView等控件中
 
 | 版本号  |    日期    | 更新日志                                                     |
 | ------- | :--------: | ------------------------------------------------------------ |
+| v3.4.0 | 2021-11-12 | 优化广告请求逻辑，修复已知问题； |
+| v3.3.2 | 2021-10-21 | 更新所有上游SDK； |
+| v3.3.1 | 2021-09-29 | 支持Admob的开屏与信息流模板；更新开屏和信息流运行策略； |
 | v3.2.0 | 2021-08-31 | 优化横幅广告，请注意接入方式变更； |
 | v3.1.0 | 2021-07-30 | 更新AdMobiusSDK； |
 | V3.0.1 | 2021-06-25 | 3.0全新发布，产品更名为AdKleinSDK，支持Cocoapods在线安装，2.x版本用户请注意接入代码更新； |
+
