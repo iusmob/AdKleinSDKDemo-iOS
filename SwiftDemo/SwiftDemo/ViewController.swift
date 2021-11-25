@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AdKleinSDK
 
 //class ViewController: UINavigationController {
 //    override func viewDidLoad() {

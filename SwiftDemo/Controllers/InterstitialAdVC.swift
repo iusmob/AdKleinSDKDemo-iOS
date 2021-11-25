@@ -27,11 +27,15 @@ class InterstitialAdVC: BaseViewController, AdKleinSDKInterstitialAdDelegate {
         
     func ak_interstitialAdDidLoad(_ interstitialAd: AdKleinSDKInterstitialAd) {
         showString(#function)
-        adLoader?.show()
     }
 
     func ak_interstitialAdDidFail(_ interstitialAd: AdKleinSDKInterstitialAd, withError error: Error) {
         showError(error)
+    }
+    
+    func ak_interstitialAdDidDownload(_ interstitialAd: AdKleinSDKInterstitialAd) {
+        showString(#function)
+        adLoader?.show()
     }
     
     func ak_interstitialAdDidRenderSuccess(_ interstitialAd: AdKleinSDKInterstitialAd) {

@@ -33,10 +33,22 @@ class FullScreenVideoAdVC: BaseViewController, AdKleinSDKFullScreenVideoAdDelega
             
     func ak_fullScreenVideoAdDidLoad(_ fullScreenVideoAd: AdKleinSDKFullScreenVideoAd) {
         showString(#function)
-        adLoader?.show()
     }
 
     func ak_fullScreenVideoAdDidFail(_ fullScreenVideoAd: AdKleinSDKFullScreenVideoAd, withError error: Error) {
+        showError(error)
+    }
+    
+    func ak_fullScreenVideoAdDidDownload(_ fullScreenVideoAd: AdKleinSDKFullScreenVideoAd) {
+        showString(#function)
+        adLoader?.show()
+    }
+    
+    func ak_fullScreenVideoAdDidRenderSuccess(_ fullScreenVideoAd: AdKleinSDKFullScreenVideoAd) {
+        showString(#function)
+    }
+    
+    func ak_fullScreenVideoAdDidRenderFail(_ fullScreenVideoAd: AdKleinSDKFullScreenVideoAd, withError error: Error) {
         showError(error)
     }
     

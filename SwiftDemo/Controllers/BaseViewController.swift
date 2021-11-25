@@ -60,7 +60,7 @@ class BaseViewController: UIViewController {
     }
     
     func showString(_ message: String) {
-        print(message)
+        print("Demo:" + message)
         tipsLabel.text = message
     }
 

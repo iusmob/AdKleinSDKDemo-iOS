@@ -49,6 +49,18 @@
 - (void)ak_fullScreenVideoAdDidFail:(AdKleinSDKFullScreenVideoAd *)fullScreenVideoAd withError:(NSError *)error{
     [self showError:error];
 }
+- (void)ak_fullScreenVideoAdDidDownload:(AdKleinSDKFullScreenVideoAd *)fullScreenVideoAd {
+    NSString *func = [NSString stringWithFormat:@"%s",__func__];
+    [self showString:func];
+    [self.adLoader show];
+}
+- (void)ak_fullScreenVideoAdDidRenderSuccess:(AdKleinSDKFullScreenVideoAd *)fullScreenVideoAd {
+    NSString *func = [NSString stringWithFormat:@"%s",__func__];
+    [self showString:func];
+}
+- (void)ak_fullScreenVideoAdDidRenderFail:(AdKleinSDKFullScreenVideoAd *)fullScreenVideoAd withError:(NSError *)error{
+    [self showError:error];
+}
 - (void)ak_fullScreenVideoAdDidShow:(AdKleinSDKFullScreenVideoAd *)fullScreenVideoAd {
     NSString *func = [NSString stringWithFormat:@"%s",__func__];
     [self showString:func];

@@ -31,7 +31,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.slotIdTextField.text = CONST_NATIVE_EXPRESS_ID;
-    
+
     self.dataArray = [NSMutableArray new];
 
     self.showBtn.hidden = YES;
@@ -85,7 +85,7 @@
     NSString *func = [NSString stringWithFormat:@"%s",__func__];
     [self showString:func];
 }
-- (void)ak_nativeExpressAdDidRenderFail:(AdKleinSDKNativeExpressAd *)nativeAd adView:(__kindof UIView<AdKleinSDKNativeExpressAdViewDelegate> *)adView {
+- (void)ak_nativeExpressAdDidRenderFail:(AdKleinSDKNativeExpressAd *)nativeAd adView:(__kindof UIView<AdKleinSDKNativeExpressAdViewDelegate> *)adView withError:(nonnull NSError *)error {
     NSString *func = [NSString stringWithFormat:@"%s",__func__];
     [self showString:func];
 }

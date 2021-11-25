@@ -11,7 +11,6 @@ import UIKit
     import AppTrackingTransparency
 #endif
 import AdSupport
-import AdKleinSDK
 import Bugly
 
 @UIApplicationMain

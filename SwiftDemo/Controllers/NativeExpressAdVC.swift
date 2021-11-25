@@ -74,7 +74,7 @@ class NativeExpressAdVC: BaseViewController, AdKleinSDKNativeExpressAdDelegate, 
         showString(#function)
     }
     
-    func ak_nativeExpressAdDidRenderFail(_ nativeAd: AdKleinSDKNativeExpressAd, adView: UIView & AdKleinSDKNativeExpressAdViewDelegate){
+    func ak_nativeExpressAdDidRenderFail(_ nativeAd: AdKleinSDKNativeExpressAd, adView: UIView & AdKleinSDKNativeExpressAdViewDelegate, withError error: Error){
         showString(#function)
     }
     

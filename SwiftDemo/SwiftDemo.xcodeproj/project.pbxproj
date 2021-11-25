@@ -13,7 +13,6 @@
 		0DF3755A253450EC00E0A786 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DF37558253450EC00E0A786 /* Main.storyboard */; };
 		0DF3755C253450F100E0A786 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DF3755B253450F100E0A786 /* Assets.xcassets */; };
 		0DF3755F253450F100E0A786 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DF3755D253450F100E0A786 /* LaunchScreen.storyboard */; };
-		0DF37568253452D900E0A786 /* AdKleinSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DF37567253452D900E0A786 /* AdKleinSDK.framework */; };
 		0DF3756A2534540800E0A786 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF375692534540800E0A786 /* Constants.swift */; };
 		48B9B64326EF78BD008956D3 /* SplashAdVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B9B64226EF78BD008956D3 /* SplashAdVC.swift */; };
 		48B9B66726F1EF07008956D3 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B9B66626F1EF07008956D3 /* BaseViewController.swift */; };
@@ -58,7 +57,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0DF37568253452D900E0A786 /* AdKleinSDK.framework in Frameworks */,
 				5B9E0FD8BC05F69A76A26AF8 /* libPods-SwiftDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

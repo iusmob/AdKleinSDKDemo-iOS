@@ -21,7 +21,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.slotIdTextField.text = CONST_INTERSTITIAL_ID;
-    
+
     self.showBtn.hidden = YES;
 }
 
@@ -31,7 +31,7 @@
         self.adLoader.delegate = nil;
         self.adLoader = nil;
     }
-    self.adLoader = [[AdKleinSDKInterstitialAd alloc] initWithPlacementId:self.slotIdTextField.text viewController:self];
+    self.adLoader = [[AdKleinSDKInterstitialAd alloc] initWithPlacementId:self.slotIdTextField.text viewController:self.navigationController];
     self.adLoader.delegate = self;
     self.adLoader.adSize = CGSizeMake(300, 400);
     [self.adLoader load];
@@ -40,10 +40,14 @@
 - (void)ak_interstitialAdDidLoad:(AdKleinSDKInterstitialAd *)interstitialAd {
     NSString *func = [NSString stringWithFormat:@"%s",__func__];
     [self showString:func];
-    [self.adLoader show];
 }
 - (void)ak_interstitialAdDidFail:(AdKleinSDKInterstitialAd *)interstitialAd withError:(NSError *)error {
     [self showError:error];
+}
+- (void)ak_interstitialAdDidDownload:(AdKleinSDKInterstitialAd *)interstitialAd {
+    NSString *func = [NSString stringWithFormat:@"%s",__func__];
+    [self showString:func];
+    [self.adLoader show];
 }
 - (void)ak_interstitialAdDidRenderSuccess:(AdKleinSDKInterstitialAd *)interstitialAd {
     NSString *func = [NSString stringWithFormat:@"%s",__func__];

@@ -83,7 +83,7 @@
         _bottomView.contentMode = UIViewContentModeScaleAspectFill;
         self.adLoader.bottomView = _bottomView;
     }
-    
+
     [self.adLoader load];
 }
 

@@ -41,14 +41,22 @@
     NSString *func = [NSString stringWithFormat:@"%s",__func__];
     [self showString:func];
 }
+
 - (void)ak_rewardVideoAdDidFail:(AdKleinSDKRewardVideoAd *)rewardVideoAd withError:(NSError *)error {
     [self showError:error];
 }
+
 - (void)ak_rewardVideoAdDidDownload:(AdKleinSDKRewardVideoAd *)rewardVideoAd {
     NSString *func = [NSString stringWithFormat:@"%s",__func__];
     [self showString:func];
     [self.adLoader show];
 }
+
+- (void)ak_rewardVideoAdDidRenderSuccess:(AdKleinSDKRewardVideoAd *)rewardVideoAd {
+    NSString *func = [NSString stringWithFormat:@"%s",__func__];
+    [self showString:func];
+}
+
 - (void)ak_rewardVideoAdDidRenderFail:(AdKleinSDKRewardVideoAd *)rewardVideoAd withError:(NSError *)error {
     [self showError:error];
 }
@@ -62,6 +70,7 @@
     NSString *func = [NSString stringWithFormat:@"%s",__func__];
     [self showString:func];
 }
+
 - (void)ak_rewardVideoAdDidClose:(AdKleinSDKRewardVideoAd *)rewardVideoAd {
     NSString *func = [NSString stringWithFormat:@"%s",__func__];
     [self showString:func];

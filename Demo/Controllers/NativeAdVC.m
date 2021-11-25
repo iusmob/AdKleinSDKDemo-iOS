@@ -32,7 +32,7 @@
     self.slotIdTextField.text = CONST_NATIVE_ID;
 
     self.showBtn.hidden = YES;
-    
+
     CGFloat screen_width = [UIScreen mainScreen].bounds.size.width;
     self.removeBtn = [[UIButton alloc] initWithFrame:CGRectMake(20, 320, screen_width - 40, 40)];
     [self.removeBtn setTitle:@"remove" forState:UIControlStateNormal];
@@ -72,10 +72,10 @@
 - (void)ak_nativeAdDidLoad:(AdKleinSDKNativeAd *)nativeAd withAdViews:(NSArray<__kindof UIView<AdKleinSDKNativeAdViewDelegate> *> *)adViews {
     NSString *func = [NSString stringWithFormat:@"%s",__func__];
     [self showString:func];
-    
+
     for (UIView<AdKleinSDKNativeAdViewDelegate> *adView in adViews) {
         [self.adViews addObject:adView];
-        
+
         CGFloat width = self.scrollView.frame.size.width;
         CGFloat height = 300;
         adView.frame = CGRectMake(0, self.adY, width, height);

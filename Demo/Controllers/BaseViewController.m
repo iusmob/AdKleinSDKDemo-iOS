@@ -7,7 +7,6 @@
 //
 
 #import "BaseViewController.h"
-#import "ConstantsHeader.h"
 
 @interface BaseViewController ()
 
@@ -79,12 +78,12 @@
 }
 
 - (void)showString:(NSString *)message {
-    NSLog(@"%@", message);
+    NSLog(@"Demo:%@", message);
     self.tipsLabel.text = message;
 }
 
 - (void)showError:(NSError *)error {
-    NSString *message =[NSString stringWithFormat:@" error code= %ld  \n%@",(long)error.code,error.userInfo[@"NSLocalizedDescription"]];
+    NSString *message =[NSString stringWithFormat:@"Demo: error code= %ld  \n%@",(long)error.code,error.userInfo[@"NSLocalizedDescription"]];
     [self showString:message];
 }
 

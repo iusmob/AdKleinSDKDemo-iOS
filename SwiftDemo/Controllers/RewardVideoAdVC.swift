@@ -40,6 +40,10 @@ class RewardVideoAdVC: BaseViewController, AdKleinSDKRewardVideoAdDelegate {
         adLoader?.show()
     }
     
+    func ak_rewardVideoAdDidRenderSuccess(_ rewardVideoAd: AdKleinSDKRewardVideoAd) {
+        showString(#function)
+    }
+    
     func ak_rewardVideoAdDidRenderFail(_ rewardVideoAd: AdKleinSDKRewardVideoAd, withError error: Error) {
         showError(error)
     }

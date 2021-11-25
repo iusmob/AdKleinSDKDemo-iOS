@@ -18,31 +18,9 @@
 		042AF55D24E27E6900E1FD59 /* RewardVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 042AF55924E27E6900E1FD59 /* RewardVideoVC.m */; };
 		042AF55E24E27E6900E1FD59 /* BannerViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 042AF55A24E27E6900E1FD59 /* BannerViewVC.m */; };
 		042AF56124E27E7D00E1FD59 /* AllViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042AF56024E27E7D00E1FD59 /* AllViewController.m */; };
-		042AF57F24E27F8E00E1FD59 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042AF57E24E27F8E00E1FD59 /* AdSupport.framework */; };
-		042AF58124E27F9400E1FD59 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042AF58024E27F9400E1FD59 /* CoreLocation.framework */; };
-		042AF58324E27F9900E1FD59 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042AF58224E27F9900E1FD59 /* QuartzCore.framework */; };
-		042AF58524E27F9F00E1FD59 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042AF58424E27F9F00E1FD59 /* SystemConfiguration.framework */; };
-		042AF58724E27FA500E1FD59 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042AF58624E27FA500E1FD59 /* CoreTelephony.framework */; };
-		042AF58924E27FAB00E1FD59 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 042AF58824E27FAB00E1FD59 /* libz.tbd */; };
-		042AF58B24E27FB000E1FD59 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042AF58A24E27FB000E1FD59 /* Security.framework */; };
-		042AF58D24E27FB600E1FD59 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042AF58C24E27FB600E1FD59 /* StoreKit.framework */; };
-		042AF58F24E27FBB00E1FD59 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 042AF58E24E27FBB00E1FD59 /* libxml2.tbd */; };
-		042AF59124E27FC100E1FD59 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042AF59024E27FC100E1FD59 /* AVFoundation.framework */; };
-		042AF59324E27FC600E1FD59 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042AF59224E27FC600E1FD59 /* WebKit.framework */; };
 		0497640624E4023500089C61 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0497640524E4023500089C61 /* BaseViewController.m */; };
 		0497644D24E52C5D00089C61 /* InterstitialVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0497644C24E52C5D00089C61 /* InterstitialVC.m */; };
 		0497645424E57E0600089C61 /* FullScreenVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0497645324E57E0600089C61 /* FullScreenVideoVC.m */; };
-		04E19F4E24EA26F300CFA1BE /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E19F4D24EA26F300CFA1BE /* MobileCoreServices.framework */; };
-		04E19F5024EA26FC00CFA1BE /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E19F4F24EA26FC00CFA1BE /* MediaPlayer.framework */; };
-		04E19F5224EA270300CFA1BE /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E19F5124EA270300CFA1BE /* CoreMedia.framework */; };
-		04E19F5424EA271C00CFA1BE /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E19F5324EA271C00CFA1BE /* CoreMotion.framework */; };
-		04E19F5624EA272100CFA1BE /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E19F5524EA272100CFA1BE /* Accelerate.framework */; };
-		04E19F5824EA272500CFA1BE /* libresolv.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E19F5724EA272500CFA1BE /* libresolv.9.tbd */; };
-		04E19F5A24EA272C00CFA1BE /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E19F5924EA272C00CFA1BE /* libc++.tbd */; };
-		04E19F5C24EA273400CFA1BE /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E19F5B24EA273400CFA1BE /* libsqlite3.tbd */; };
-		04E19F9B24EA27C600CFA1BE /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E19F9A24EA27C600CFA1BE /* ImageIO.framework */; };
-		0DA9A40B2534605500A4993F /* AdKleinSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DA9A40A2534605500A4993F /* AdKleinSDK.framework */; };
-		2C6E1AA024F40BD7001A02E6 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6E1A9F24F40BD7001A02E6 /* libbz2.tbd */; };
 		4801DC282692A6C8004164EC /* PrivacyAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 4801DC272692A6C8004164EC /* PrivacyAlert.m */; };
 		4814FD00264A7BAE00E5F9B6 /* NativeAdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4814FCFF264A7BAE00E5F9B6 /* NativeAdVC.m */; };
 		48FE99922657C7740074A19A /* NativeExpressAdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 48FE99912657C7740074A19A /* NativeExpressAdVC.m */; };
@@ -117,28 +95,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0DA9A40B2534605500A4993F /* AdKleinSDK.framework in Frameworks */,
-				2C6E1AA024F40BD7001A02E6 /* libbz2.tbd in Frameworks */,
-				04E19F9B24EA27C600CFA1BE /* ImageIO.framework in Frameworks */,
-				04E19F5C24EA273400CFA1BE /* libsqlite3.tbd in Frameworks */,
-				04E19F5A24EA272C00CFA1BE /* libc++.tbd in Frameworks */,
-				04E19F5824EA272500CFA1BE /* libresolv.9.tbd in Frameworks */,
-				04E19F5624EA272100CFA1BE /* Accelerate.framework in Frameworks */,
-				04E19F5424EA271C00CFA1BE /* CoreMotion.framework in Frameworks */,
-				04E19F5224EA270300CFA1BE /* CoreMedia.framework in Frameworks */,
-				04E19F5024EA26FC00CFA1BE /* MediaPlayer.framework in Frameworks */,
-				042AF59324E27FC600E1FD59 /* WebKit.framework in Frameworks */,
-				04E19F4E24EA26F300CFA1BE /* MobileCoreServices.framework in Frameworks */,
-				042AF59124E27FC100E1FD59 /* AVFoundation.framework in Frameworks */,
-				042AF58F24E27FBB00E1FD59 /* libxml2.tbd in Frameworks */,
-				042AF58D24E27FB600E1FD59 /* StoreKit.framework in Frameworks */,
-				042AF58B24E27FB000E1FD59 /* Security.framework in Frameworks */,
-				042AF58924E27FAB00E1FD59 /* libz.tbd in Frameworks */,
-				042AF58724E27FA500E1FD59 /* CoreTelephony.framework in Frameworks */,
-				042AF58524E27F9F00E1FD59 /* SystemConfiguration.framework in Frameworks */,
-				042AF58324E27F9900E1FD59 /* QuartzCore.framework in Frameworks */,
-				042AF58124E27F9400E1FD59 /* CoreLocation.framework in Frameworks */,
-				042AF57F24E27F8E00E1FD59 /* AdSupport.framework in Frameworks */,
 				7B2F78E380F90C054AD29814 /* libPods-Demo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
