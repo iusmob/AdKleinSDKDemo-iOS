@@ -15,7 +15,7 @@ target 'Demo' do
   pod 'AdKleinSDK/AdKleinSDKPlatforms/Google'  # Admob(可选)
   pod 'AdKleinSDK/AdKleinSDKPlatforms/Smaato'  # Smaato(可选)
   #注意，接入快手时，需要关闭bitcode，且不支持M1芯片下的模拟器
-  pod 'AdKleinSDK/AdKleinSDKPlatforms/KS',     # 快手(可选)
+  pod 'AdKleinSDK/AdKleinSDKPlatforms/KS'      # 快手(可选)
 end
 target 'SwiftDemo' do
   project 'SwiftDemo/SwiftDemo.xcodeproj'
@@ -30,7 +30,7 @@ target 'SwiftDemo' do
   pod 'AdKleinSDK/AdKleinSDKPlatforms/Google'  # Admob(可选)
   pod 'AdKleinSDK/AdKleinSDKPlatforms/Smaato'  # Smaato(可选)
   #注意，接入快手时，需要关闭bitcode，且不支持M1芯片下的模拟器
-  pod 'AdKleinSDK/AdKleinSDKPlatforms/KS',     # 快手(可选)
+  pod 'AdKleinSDK/AdKleinSDKPlatforms/KS'      # 快手(可选)
 end
 
 post_install do |installer|
