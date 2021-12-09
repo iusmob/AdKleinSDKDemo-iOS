@@ -31,10 +31,6 @@
     }
     self.adLoader = [[AdKleinSDKFullScreenVideoAd alloc] initWithPlacementId:self.slotIdTextField.text viewController:self];
     self.adLoader.delegate = self;
-    self.adLoader.detailPageVideoMuted = YES;
-    self.adLoader.videoAutoPlayOnWWAN = YES;
-    self.adLoader.minVideoDuration = 5;
-    self.adLoader.maxVideoDuration = 100*1000;
     [self.adLoader load];
 }
 
